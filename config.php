@@ -1,7 +1,6 @@
 <?php
-// Create connection
 /** The name of the database*/
-define( 'DB_NAME', 'nhom4' );
+define( 'DB_NAME', 'lam' );
 /** MySQL database username */
 define( 'DB_USER', 'root' );
 /** MySQL database password */
