@@ -503,6 +503,55 @@ require "models/productmodels.php";
                         <!-- /product -->
 
                         <?php endforeach;
+                        else :
+                            $getAllProducts = $product->getAllProducts();
+                            foreach ($getAllProducts as $value) : ?>
+                        <!-- product -->
+                        <div class="col-md-4 col-xs-6">
+                            <div class="product">
+                                <div class="product-img">
+                                    <img src="./img/<?php echo $value['image'] ?>" alt="">
+                                    <!-- <div class="product-label">
+                                                <span class="sale">-30%</span>
+                                                <span class="new">NEW</span>
+                                            </div> -->
+                                </div>
+                                <div class="product-body">
+                                    <!-- <p class="product-category">Category</p> -->
+                                    <h3 class="product-name"><a
+                                            href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
+                                        </a>
+                                    </h3>
+                                    <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
+                                    <!-- <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div> -->
+                                    <div class="product-btns">
+                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
+                                                class="tooltipp">add to wishlist</span></button>
+                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span
+                                                class="tooltipp">add to compare</span></button>
+                                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick
+                                                view</span></button>
+                                    </div>
+                                </div>
+                                <div class="add-to-cart">
+                                    <a href="cart.php?id=<?php echo $value['id'] ?>">
+                                        <button class=" add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+                                            cart</button>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /product -->
+
+                        <?php endforeach;
+
                         endif;
                         ?>
 
@@ -580,53 +629,14 @@ require "models/productmodels.php";
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                 incididunt ut.</p>
                             <ul class="footer-links">
-                                <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
+                                <li><a href="#"><i class="fa fa-map-marker"></i>53 Vo Van Ngan Street, Linh Chieu
+                                        District, Thu Duc City, Ho Chi Minh City</a></li>
                                 <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-                                <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+                                <li><a href="#"><i class="fa fa-envelope-o"></i>daotanquocviet@gmail.com</a></li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-xs-6">
-                        <div class="footer">
-                            <h3 class="footer-title">Categories</h3>
-                            <ul class="footer-links">
-                                <li><a href="#">Hot deals</a></li>
-                                <li><a href="#">Laptops</a></li>
-                                <li><a href="#">Smartphones</a></li>
-                                <li><a href="#">Cameras</a></li>
-                                <li><a href="#">Accessories</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="clearfix visible-xs"></div>
-
-                    <div class="col-md-3 col-xs-6">
-                        <div class="footer">
-                            <h3 class="footer-title">Information</h3>
-                            <ul class="footer-links">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Orders and Returns</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-xs-6">
-                        <div class="footer">
-                            <h3 class="footer-title">Service</h3>
-                            <ul class="footer-links">
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">View Cart</a></li>
-                                <li><a href="#">Wishlist</a></li>
-                                <li><a href="#">Track My Order</a></li>
-                                <li><a href="#">Help</a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
                 <!-- /row -->
             </div>

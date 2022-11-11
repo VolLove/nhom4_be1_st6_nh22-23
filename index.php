@@ -322,7 +322,7 @@ require "models/productmodels.php";
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
-                                            <a href="#">
+                                            <a href="cart.php?id=<?php echo $value['id'] ?>">
                                                 <button class="add-to-cart-btn">
                                                     <i class="fa fa-shopping-cart"></i>add
                                                     tocart
