@@ -1,6 +1,6 @@
 <?php
 /** The name of the database*/
-define( 'DB_NAME', 'lam' );
+define( 'DB_NAME', 'nhom4' );
 /** MySQL database username */
 define( 'DB_USER', 'root' );
 /** MySQL database password */
