@@ -196,10 +196,10 @@ require "models/productmodels.php";
     <!-- BREADCRUMB -->
     <?php
     $product = new product;
-	if(isset($_GET['id'])):
-		$id = $_GET['id'];
-		$getProductById = $product->getProductByID($id);
-		foreach($getProductById as $value):
+    if (isset($_GET['id'])) :
+        $id = $_GET['id'];
+        $getProductById = $product->getProductByID($id);
+        foreach ($getProductById as $value) :
     ?>
     <div id="breadcrumb" class="section">
         <!-- container -->
@@ -220,7 +220,8 @@ require "models/productmodels.php";
         </div>
         <!-- /container -->
     </div>
-    <?php endforeach; endif;?>
+    <?php endforeach;
+    endif; ?>
     <!-- /BREADCRUMB -->
 
     <!-- SECTION -->
@@ -229,30 +230,30 @@ require "models/productmodels.php";
         <div class="container">
             <!-- row -->
             <div class="row">
-            <?php
+                <?php
                 $product = new product;
-	            if(isset($_GET['id'])):
-		            $id = $_GET['id'];
-		            $getProductById = $product->getProductByID($id);
-		        foreach($getProductById as $value):
-            ?>
+                if (isset($_GET['id'])) :
+                    $id = $_GET['id'];
+                    $getProductById = $product->getProductByID($id);
+                    foreach ($getProductById as $value) :
+                ?>
                 <!-- Product main img -->
                 <div class="col-md-5 col-md-push-2">
                     <div id="product-main-img">
                         <div class="product-preview">
-                            <img src="img/<?php echo $value['image']?>" alt="">
+                            <img src="img/<?php echo $value['image'] ?>" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="img/<?php echo $value['image']?>" alt="">
+                            <img src="img/<?php echo $value['image'] ?>" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="img/<?php echo $value['image']?>" alt="">
+                            <img src="img/<?php echo $value['image'] ?>" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="img/<?php echo $value['image']?>" alt="">
+                            <img src="img/<?php echo $value['image'] ?>" alt="">
                         </div>
                     </div>
                 </div>
@@ -262,32 +263,33 @@ require "models/productmodels.php";
                 <div class="col-md-2  col-md-pull-5">
                     <div id="product-imgs">
                         <div class="product-preview">
-                            <img src="img/<?php echo $value['image']?>" alt="">
+                            <img src="img/<?php echo $value['image'] ?>" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="img/<?php echo $value['image']?>" alt="">
+                            <img src="img/<?php echo $value['image'] ?>" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="img/<?php echo $value['image']?>" alt="">
+                            <img src="img/<?php echo $value['image'] ?>" alt="">
                         </div>
 
                         <div class="product-preview">
-                            <img src="img/<?php echo $value['image']?>" alt="">
+                            <img src="img/<?php echo $value['image'] ?>" alt="">
                         </div>
                     </div>
                 </div>
-                <?php endforeach; endif;?>
+                <?php endforeach;
+                endif; ?>
                 <!-- /Product thumb imgs -->
 
                 <!-- Product details -->
                 <?php
                 $product = new product;
-	            if(isset($_GET['id'])):
-		            $id = $_GET['id'];
-		            $getProductById = $product->getProductByID($id);
-		        foreach($getProductById as $value):
+                if (isset($_GET['id'])) :
+                    $id = $_GET['id'];
+                    $getProductById = $product->getProductByID($id);
+                    foreach ($getProductById as $value) :
                 ?>
                 <div class="col-md-5">
                     <div class="product-details">
@@ -303,7 +305,8 @@ require "models/productmodels.php";
                             <a class="review-link" href="#">10 Review(s) | Add your review</a>
                         </div>
                         <div>
-                            <h3 class="product-price"><?php echo number_format($value['price'])?><del class="product-old-price"><?php echo number_format($value['price'])?></del></h3>
+                            <h3 class="product-price"><?php echo number_format($value['price']) ?><del
+                                    class="product-old-price"><?php echo number_format($value['price']) ?></del></h3>
                             <span class="product-available">In Stock</span>
                         </div>
                         <p><?php echo $value['description'] ?></p>
@@ -356,7 +359,8 @@ require "models/productmodels.php";
 
                     </div>
                 </div>
-                <?php endforeach; endif;?>
+                <?php endforeach;
+                endif; ?>
                 <!-- /Product details -->
 
                 <!-- Product tab -->
@@ -372,13 +376,13 @@ require "models/productmodels.php";
 
                         <!-- product tab content -->
                         <div class="tab-content">
-                        <?php
+                            <?php
                             $product = new product;
-	                        if(isset($_GET['id'])):
-		                        $id = $_GET['id'];
-		                        $getProductById = $product->getProductByID($id);
-		                    foreach($getProductById as $value):
-                        ?>
+                            if (isset($_GET['id'])) :
+                                $id = $_GET['id'];
+                                $getProductById = $product->getProductByID($id);
+                                foreach ($getProductById as $value) :
+                            ?>
                             <!-- tab1  -->
                             <div id="tab1" class="tab-pane fade in active">
                                 <div class="row">
@@ -399,7 +403,8 @@ require "models/productmodels.php";
                                     </div>
                                 </div>
                             </div>
-                            <?php endforeach; endif;?>
+                            <?php endforeach;
+                            endif; ?>
                             <!-- /tab2  -->
 
                             <!-- tab3  -->
