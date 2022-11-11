@@ -1,5 +1,5 @@
 <?php
-	require "connect.php";
+	require "config.php";
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +84,7 @@
 										<option value="1">Category 02</option>
 									</select>
 									<input class="input" placeholder="Search here">
-									<button class="search-btn">Search</button>
+									<button type= "submit" class="search-btn">Search</button>
 								</form>
 							</div>
 						</div>
