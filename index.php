@@ -255,20 +255,13 @@ require "models/productmodels.php";
                 <div class="col-md-12">
                     <div class="section-title">
                         <h3 class="title">New Products</h3>
-                        <div class="section-nav">
+                        <!-- <div class="section-nav">
                             <ul class="section-tab-nav tab-nav">
-                                <?php
-                                $gettype = new Product;
-                                $getallType = $gettype->getAlltype();
-                                foreach ($getallType as $value) : ?>
                                 <li><a data-toggle="tab"
-                                        href="#tab<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                                        href="#tab"></a>
                                 </li>
-                                <?php
-                                endforeach;
-                                ?>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- /section title -->
@@ -310,7 +303,7 @@ require "models/productmodels.php";
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                             </div> -->
-                                            <div class="product-btns">
+                                            <!-- <div class="product-btns">
                                                 <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
                                                         class="tooltipp">add to
                                                         wishlist</span></button>
@@ -319,7 +312,7 @@ require "models/productmodels.php";
                                                         compare</span></button>
                                                 <button class="quick-view"><i class="fa fa-eye"></i><span
                                                         class="tooltipp">quick view</span></button>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="add-to-cart">
                                             <a href="cart.php?id=<?php echo $value['id'] ?>">
@@ -424,10 +417,10 @@ require "models/productmodels.php";
                     <div class="row">
                         <div class="products-tabs">
                             <!-- tab -->
-                            <div id="tab2" class="tab-pane fade in active">
+                            <div id="tab" class="tab-pane fade in active">
                                 <div class="products-slick" data-nav="#slick-nav-2">
                                     <!-- product -->
-                                    <div class="product">
+                                    <!-- <div class="product">
                                         <div class="product-img">
                                             <img src="./img/product06.png" alt="">
                                             <div class="product-label">
@@ -463,7 +456,7 @@ require "models/productmodels.php";
                                                 add to
                                                 cart</button>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <!-- /product -->
                                 </div>
                                 <div id="slick-nav-2" class="products-slick-nav"></div>
