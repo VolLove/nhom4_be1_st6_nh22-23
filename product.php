@@ -70,7 +70,7 @@ require "models/productmodels.php";
                     <!-- LOGO -->
                     <div class="col-md-3">
                         <div class="header-logo">
-                            <a href="#" class="logo">
+                            <a href="index.php" class="logo">
                                 <img src="./img/logo.png" alt="">
                             </a>
                         </div>
@@ -101,7 +101,7 @@ require "models/productmodels.php";
                                 <a href="#">
                                     <i class="fa fa-heart-o"></i>
                                     <span>Your Wishlist</span>
-                                    <div class="qty">2</div>
+                                    <!-- <div class="qty">2</div> -->
                                 </a>
                             </div>
                             <!-- /Wishlist -->
@@ -111,11 +111,11 @@ require "models/productmodels.php";
                                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span>Your Cart</span>
-                                    <div class="qty">3</div>
+                                    <!-- <div class="qty">3</div> -->
                                 </a>
                                 <div class="cart-dropdown">
                                     <div class="cart-list">
-                                        <div class="product-widget">
+                                        <!-- <div class="product-widget">
                                             <div class="product-img">
                                                 <img src="./img/product01.png" alt="">
                                             </div>
@@ -124,26 +124,16 @@ require "models/productmodels.php";
                                                 <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
                                             </div>
                                             <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="product-widget">
-                                            <div class="product-img">
-                                                <img src="./img/product02.png" alt="">
-                                            </div>
-                                            <div class="product-body">
-                                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                                <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-                                            </div>
-                                            <button class="delete"><i class="fa fa-close"></i></button>
-                                        </div>
                                     </div>
                                     <div class="cart-summary">
-                                        <small>3 Item(s) selected</small>
-                                        <h5>SUBTOTAL: $2940.00</h5>
+                                        <small>0 Item(s) selected</small>
+                                        <h5>SUBTOTAL: $0</h5>
                                     </div>
                                     <div class="cart-btns">
                                         <a href="#">View Cart</a>
-                                        <a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                                        <a href="checkout.php">Checkout <i class="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -177,13 +167,34 @@ require "models/productmodels.php";
             <div id="responsive-nav">
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Home</a></li>
                     <li><a href="#">Hot Deals</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">Laptops</a></li>
-                    <li><a href="#">Smartphones</a></li>
-                    <li><a href="#">Cameras</a></li>
-                    <li><a href="#">Accessories</a></li>
+                    <?php
+                    $gettype = new Product;
+                    $product = new product;
+
+                    $getallType = $gettype->getAlltype();
+                    if (isset($_GET['id'])) :
+                        $id = $_GET['id'];
+                        $getProductById = $product->getProductByID($id);
+                        echo "<li><a href='store.php'>Categories</a></li>";
+                        foreach ($getallType as $value) :
+                            foreach ($getProductById as $call) :
+                                if ($value['type_id'] == $call['type_id']) :
+
+                    ?>
+                    <li class='active'><a
+                            href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                    </li>
+                    <?php else : ?>
+                    <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                    </li>
+                    <?php
+                                endif;
+                            endforeach;
+                        endforeach;
+                    endif;
+                    ?>
                 </ul>
                 <!-- /NAV -->
             </div>
@@ -195,7 +206,6 @@ require "models/productmodels.php";
 
     <!-- BREADCRUMB -->
     <?php
-    $product = new product;
     if (isset($_GET['id'])) :
         $id = $_GET['id'];
         $getProductById = $product->getProductByID($id);
@@ -210,8 +220,20 @@ require "models/productmodels.php";
                     <ul class="breadcrumb-tree">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">All Categories</a></li>
-                        <li><a href="#">Accessories</a></li>
-                        <li><a href="#">Headphones</a></li>
+                        <li class="active"><a href="store.php">Categories</a></li>
+                        <?php
+                                foreach ($getallType as $typeValue) :
+                                    foreach ($getProductById as $call) :
+                                        if ($typeValue['type_id'] == $call['type_id']) :
+                                ?>
+                        <li class='active'><a
+                                href="store.php?id=<?php echo $typeValue['type_id'] ?>"><?php echo $typeValue['type_name'] ?></a>
+                        </li>
+                        <?php
+                                        endif;
+                                    endforeach;
+                                endforeach;
+                                ?>
                         <li class="active"><?php echo $value['name'] ?></li>
                     </ul>
                 </div>
@@ -231,7 +253,7 @@ require "models/productmodels.php";
             <!-- row -->
             <div class="row">
                 <?php
-                $product = new product;
+
                 if (isset($_GET['id'])) :
                     $id = $_GET['id'];
                     $getProductById = $product->getProductByID($id);

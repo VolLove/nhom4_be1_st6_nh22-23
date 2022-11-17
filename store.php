@@ -247,7 +247,7 @@ require "models/productmodels.php";
                 <!-- ASIDE -->
                 <div id="aside" class="col-md-3">
                     <!-- aside Widget -->
-                    <div class="aside">
+                    <!-- <div class="aside">
                         <h3 class="aside-title">Categories</h3>
                         <div class="checkbox-filter">
 
@@ -305,11 +305,11 @@ require "models/productmodels.php";
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
-                    <div class="aside">
+                    <!-- <div class="aside">
                         <h3 class="aside-title">Price</h3>
                         <div class="price-filter">
                             <div id="price-slider"></div>
@@ -325,11 +325,11 @@ require "models/productmodels.php";
                                 <span class="qty-down">-</span>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
-                    <div class="aside">
+                    <!-- <div class="aside">
                         <h3 class="aside-title">Brand</h3>
                         <div class="checkbox-filter">
                             <div class="input-checkbox">
@@ -381,11 +381,11 @@ require "models/productmodels.php";
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
-                    <div class="aside">
+                    <!-- <div class="aside">
                         <h3 class="aside-title">Top selling</h3>
                         <div class="product-widget">
                             <div class="product-img">
@@ -419,7 +419,7 @@ require "models/productmodels.php";
                                 <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- /aside Widget -->
                 </div>
                 <!-- /ASIDE -->
