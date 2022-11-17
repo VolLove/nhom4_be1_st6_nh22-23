@@ -743,6 +743,7 @@ textarea.input {
   position: relative;
   overflow: hidden;
   margin: 15px 0px;
+  height: 270px;
 }
 
 .shop:before {
@@ -776,11 +777,13 @@ textarea.input {
 .shop .shop-img {
   position: relative;
   background-color: #e4e7ed;
+
   z-index: -1;
 }
 
 .shop .shop-img > img {
-  width: 100%;
+  width: 360px;
+  height: 240px;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
