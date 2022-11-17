@@ -100,7 +100,7 @@ require "models/productmodels.php";
                                     </div>
                                     <div class="cart-summary">
                                         <small>0 Item(s) selected</small>
-                                        <h5>SUBTOTAL: $0</h5>
+                                        <h5>SUBTOTAL: $0.00</h5>
                                     </div>
                                     <div class="cart-btns">
                                         <a href="#">View Cart</a>

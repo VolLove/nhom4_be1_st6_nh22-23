@@ -101,11 +101,11 @@ require "models/productmodels.php"; ?>
                                     </div>
                                     <div class="cart-summary">
                                         <small>0 Item(s) selected</small>
-                                        <h5>SUBTOTAL: $0</h5>
+                                        <h5>SUBTOTAL: $0.00</h5>
                                     </div>
                                     <div class="cart-btns">
                                         <a href="#">View Cart</a>
-                                        <a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                                        <a href="checkout.php">Checkout <i class="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -139,9 +139,9 @@ require "models/productmodels.php"; ?>
             <div id="responsive-nav">
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Hot Deals</a></li>
-                    <li><a href="#">Categories</a></li>
+                    <li class="active"><a href="index.php">Home</a></li>
+                    <!-- <li><a href="#">Hot Deals</a></li> -->
+                    <li><a href="store.php">Categories</a></li>
                     <?php
                     $gettype = new Product;
                     $getallType = $gettype->getAlltype();

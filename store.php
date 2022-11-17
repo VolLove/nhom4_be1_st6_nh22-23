@@ -100,7 +100,7 @@ require "models/productmodels.php";
                                     </div>
                                     <div class="cart-summary">
                                         <small>0 Item(s) selected</small>
-                                        <h5>SUBTOTAL: $0</h5>
+                                        <h5>SUBTOTAL: $0.oo</h5>
                                     </div>
                                     <div class="cart-btns">
                                         <a href="#">View Cart</a>
@@ -150,18 +150,19 @@ require "models/productmodels.php";
                         foreach ($getallType as $value) :
                             if ($value['type_id'] == $id) :
                     ?>
-                                <li class='active'><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
-                                </li><?php else : ?>
-                                <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
-                                </li>
-                            <?php
+                    <li class='active'><a
+                            href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                    </li><?php else : ?>
+                    <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                    </li>
+                    <?php
                                     endif;
                                 endforeach;
                             } else {
                                 echo "<li class='active'><a href='store.php'>Categories</a></li>";
                                 foreach ($getallType as $value) : ?>
-                            <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
-                            </li>
+                    <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                    </li>
                     <?php
                                 endforeach;
                             }
@@ -193,7 +194,7 @@ require "models/productmodels.php";
                             $getTypeName = $product->getTypeName($id);
                             foreach ($getTypeName as $value) :
                         ?>
-                                <li class="active"><?php echo $value['type_name'] ?></li>
+                        <li class="active"><?php echo $value['type_name'] ?></li>
 
                         <?php
                                 break;
@@ -432,26 +433,27 @@ require "models/productmodels.php";
                             $keyword = $_GET['search'];
                             $getbysearch = $product->search($keyword);
                             foreach ($getbysearch as $value) : ?>
-                                <!-- product -->
-                                <div class="col-md-4 col-xs-6">
-                                    <div class="product">
-                                        <div class="product-img">
-                                            <img src="./img/<?php echo $value['image'] ?>" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
-                                                </a>
-                                            </h3>
-                                            <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
-                                        </div>
-                                        <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-                                                cart</button>
-                                        </div>
-                                    </div>
+                        <!-- product -->
+                        <div class="col-md-4 col-xs-6">
+                            <div class="product">
+                                <div class="product-img">
+                                    <img src="./img/<?php echo $value['image'] ?>" alt="">
                                 </div>
-                                <!-- /product -->
-                                <?php
+                                <div class="product-body">
+                                    <h3 class="product-name"><a
+                                            href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
+                                        </a>
+                                    </h3>
+                                    <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
+                                </div>
+                                <div class="add-to-cart">
+                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+                                        cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /product -->
+                        <?php
                             endforeach;
                         else :
 
@@ -460,30 +462,31 @@ require "models/productmodels.php";
                                 $id = $_GET['id'];
                                 $getProductByType = $product->getProductByType($id);
                                 foreach ($getProductByType as $value) : ?>
-                                    <!-- product -->
-                                    <div class="col-md-4 col-xs-6">
-                                        <div class="product">
-                                            <div class="product-img">
-                                                <img src="./img/<?php echo $value['image'] ?>" alt="">
-                                                <!-- <div class="product-label">
+                        <!-- product -->
+                        <div class="col-md-4 col-xs-6">
+                            <div class="product">
+                                <div class="product-img">
+                                    <img src="./img/<?php echo $value['image'] ?>" alt="">
+                                    <!-- <div class="product-label">
                                             <span class="sale">-30%</span>
                                             <span class="new">NEW</span>
                                         </div> -->
-                                            </div>
-                                            <div class="product-body">
-                                                <!-- <p class="product-category">Category</p> -->
-                                                <h3 class="product-name"><a href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
-                                                    </a>
-                                                </h3>
-                                                <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
-                                                <!-- <div class="product-rating">
+                                </div>
+                                <div class="product-body">
+                                    <!-- <p class="product-category">Category</p> -->
+                                    <h3 class="product-name"><a
+                                            href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
+                                        </a>
+                                    </h3>
+                                    <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
+                                    <!-- <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                         </div> -->
-                                                <!-- <div class="product-btns">
+                                    <!-- <div class="product-btns">
                                             <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
                                                     class="tooltipp">add to wishlist</span></button>
                                             <button class="add-to-compare"><i class="fa fa-exchange"></i><span
@@ -491,59 +494,62 @@ require "models/productmodels.php";
                                             <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick
                                                     view</span></button>
                                         </div> -->
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-                                                    cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /product -->
+                                </div>
+                                <div class="add-to-cart">
+                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+                                        cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /product -->
 
-                                <?php endforeach;
+                        <?php endforeach;
                             else :
                                 $getAllProducts = $product->getAllProducts();
                                 foreach ($getAllProducts as $value) : ?>
-                                    <!-- product -->
-                                    <div class="col-md-4 col-xs-6">
-                                        <div class="product">
-                                            <div class="product-img">
-                                                <img src="./img/<?php echo $value['image'] ?>" alt="">
-                                                <!-- <div class="product-label">
+                        <!-- product -->
+                        <div class="col-md-4 col-xs-6">
+                            <div class="product">
+                                <div class="product-img">
+                                    <img src="./img/<?php echo $value['image'] ?>" alt="">
+                                    <!-- <div class="product-label">
                                                     <span class="sale">-30%</span>
                                                     <span class="new">NEW</span>
                                                 </div> -->
-                                            </div>
-                                            <div class="product-body">
-                                                <!-- <p class="product-category">Category</p> -->
-                                                <h3 class="product-name"><a href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
-                                                    </a>
-                                                </h3>
-                                                <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
-                                                <!-- <div class="product-rating">
+                                </div>
+                                <div class="product-body">
+                                    <!-- <p class="product-category">Category</p> -->
+                                    <h3 class="product-name"><a
+                                            href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
+                                        </a>
+                                    </h3>
+                                    <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
+                                    <!-- <div class="product-rating">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                 </div> -->
-                                                <div class="product-btns">
-                                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick
-                                                            view</span></button>
-                                                </div>
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <a href="cart.php?id=<?php echo $value['id'] ?>">
-                                                    <button class=" add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-                                                        cart</button>
-                                                </a>
-
-                                            </div>
-                                        </div>
+                                    <div class="product-btns">
+                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
+                                                class="tooltipp">add to wishlist</span></button>
+                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span
+                                                class="tooltipp">add to compare</span></button>
+                                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick
+                                                view</span></button>
                                     </div>
-                                    <!-- /product -->
+                                </div>
+                                <div class="add-to-cart">
+                                    <a href="cart.php?id=<?php echo $value['id'] ?>">
+                                        <button class=" add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+                                            cart</button>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /product -->
 
                         <?php endforeach;
 
@@ -659,8 +665,9 @@ require "models/productmodels.php";
                         <span class="copyright">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;<script>
-                                document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            document.write(new Date().getFullYear());
+                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
+                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </span>
                     </div>

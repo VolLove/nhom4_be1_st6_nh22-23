@@ -103,7 +103,7 @@ require "models/productmodels.php";
                                     </div>
                                     <div class="cart-summary">
                                         <small>Item(s) selected</small>
-                                        <h5>SUBTOTAL: $0</h5>
+                                        <h5>SUBTOTAL: $0.00</h5>
                                     </div>
                                     <div class="cart-btns">
                                         <a href="#">View Cart</a>
@@ -148,8 +148,8 @@ require "models/productmodels.php";
                     $gettype = new Product;
                     $getallType = $gettype->getAlltype();
                     foreach ($getallType as $value) : ?>
-                        <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
-                        </li>
+                    <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                    </li>
                     <?php
                     endforeach;
                     ?>
@@ -176,17 +176,18 @@ require "models/productmodels.php";
                         $num++;
                 ?>
 
-                        <div class="col-md-4 col-xs-6">
-                            <div class="shop">
-                                <div class="shop-img">
-                                    <img src="img/shop<?php echo $value['type_id'] ?>.png" alt="">
-                                </div>
-                                <div class="shop-body">
-                                    <h3><?php echo $value['type_name'] ?><br>Collection</h3>
-                                    <a href="store.php?id=<?php echo $value['type_id'] ?>" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
+                <div class="col-md-4 col-xs-6">
+                    <div class="shop">
+                        <div class="shop-img">
+                            <img src="img/shop<?php echo $value['type_id'] ?>.png" alt="">
                         </div>
+                        <div class="shop-body">
+                            <h3><?php echo $value['type_name'] ?><br>Collection</h3>
+                            <a href="store.php?id=<?php echo $value['type_id'] ?>" class="cta-btn">Shop now <i
+                                    class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
                 <?php
                     endif;
                 endforeach;
@@ -236,30 +237,31 @@ require "models/productmodels.php";
                                     $getAllproduct = $product->getAllProducts();
                                     foreach ($getAllproduct as $value) :
                                     ?>
-                                        <div class="product">
-                                            <div class="product-img">
-                                                <img src='img/<?php echo $value['image'] ?>'>
-                                                <div class="product-label">
-                                                    <!-- <span class="sale">-30%</span>
+                                    <div class="product">
+                                        <div class="product-img">
+                                            <img src='img/<?php echo $value['image'] ?>'>
+                                            <div class="product-label">
+                                                <!-- <span class="sale">-30%</span>
                                                 <span class="new">NEW</span> -->
-                                                </div>
                                             </div>
-                                            <div class="product-body">
-                                                <p class="product-category">Category</p>
-                                                <h3 class="product-name"><a href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?></a>
-                                                </h3>
-                                                <h4 class="product-price">
-                                                    <?php echo number_format($value['price']) ?>
-                                                    <!-- <del class="product-old-price">?></del> -->
-                                                </h4>
-                                                <!-- <div class="product-rating">
+                                        </div>
+                                        <div class="product-body">
+                                            <p class="product-category">Category</p>
+                                            <h3 class="product-name"><a
+                                                    href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?></a>
+                                            </h3>
+                                            <h4 class="product-price">
+                                                <?php echo number_format($value['price']) ?>
+                                                <!-- <del class="product-old-price">?></del> -->
+                                            </h4>
+                                            <!-- <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                             </div> -->
-                                                <!-- <div class="product-btns">
+                                            <!-- <div class="product-btns">
                                                 <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
                                                         class="tooltipp">add to
                                                         wishlist</span></button>
@@ -269,16 +271,16 @@ require "models/productmodels.php";
                                                 <button class="quick-view"><i class="fa fa-eye"></i><span
                                                         class="tooltipp">quick view</span></button>
                                             </div> -->
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <a href="cart.php?id=<?php echo $value['id'] ?>">
-                                                    <button class="add-to-cart-btn">
-                                                        <i class="fa fa-shopping-cart"></i>add
-                                                        tocart
-                                                    </button></a>
-
-                                            </div>
                                         </div>
+                                        <div class="add-to-cart">
+                                            <a href="cart.php?id=<?php echo $value['id'] ?>">
+                                                <button class="add-to-cart-btn">
+                                                    <i class="fa fa-shopping-cart"></i>add
+                                                    tocart
+                                                </button></a>
+
+                                        </div>
+                                    </div>
                                     <?php endforeach; ?>
                                 </div>
                                 <div id="slick-nav-1" class="products-slick-nav"></div>
@@ -356,8 +358,9 @@ require "models/productmodels.php";
                             <ul class="section-tab-nav tab-nav">
                                 <?php
                                 foreach ($getallType as $value) : ?>
-                                    <li><a data-toggle="tab" href="#tab<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
-                                    </li>
+                                <li><a data-toggle="tab"
+                                        href="#tab<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                                </li>
                                 <?php
                                 endforeach;
                                 ?>
@@ -805,8 +808,9 @@ require "models/productmodels.php";
                         <span class="copyright">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;<script>
-                                document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            document.write(new Date().getFullYear());
+                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
+                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </span>
                     </div>
