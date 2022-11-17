@@ -10,36 +10,7 @@ require "models/productmodels.php";
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-    <title>Electro - HTML Ecommerce Template</title>
-
-    <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-
-    <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-
-    <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="css/slick.css" />
-    <link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
-
-    <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
-
-    <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-
-    <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="css/style.css" />
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-
+    <?php include "head.php"; ?>
 </head>
 
 <body>
@@ -80,14 +51,15 @@ require "models/productmodels.php";
                     <!-- SEARCH BAR -->
                     <div class="col-md-6">
                         <div class="header-search">
-                            <form>
-                                <select class="input-select">
+                            <form action="store.php?" method="GET">
+                                <select class=" input-select">
                                     <option value="0">All Categories</option>
                                     <option value="1">Category 01</option>
                                     <option value="1">Category 02</option>
                                 </select>
-                                <input class="input" placeholder="Search here">
-                                <button class="search-btn">Search</button>
+                                <input type="text" name="search" class="input" placeholder="Search here">
+                                <button type="submit" class="search-btn">Search
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -167,7 +139,7 @@ require "models/productmodels.php";
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="#">Hot Deals</a></li>
+                    <!-- <li><a href="#">Hot Deals</a></li> -->
 
                     <?php
                     $gettype = new Product;
@@ -178,19 +150,18 @@ require "models/productmodels.php";
                         foreach ($getallType as $value) :
                             if ($value['type_id'] == $id) :
                     ?>
-                    <li class='active'><a
-                            href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
-                    </li><?php else : ?>
-                    <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
-                    </li>
-                    <?php
+                                <li class='active'><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                                </li><?php else : ?>
+                                <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                                </li>
+                            <?php
                                     endif;
                                 endforeach;
                             } else {
                                 echo "<li class='active'><a href='store.php'>Categories</a></li>";
                                 foreach ($getallType as $value) : ?>
-                    <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
-                    </li>
+                            <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                            </li>
                     <?php
                                 endforeach;
                             }
@@ -222,7 +193,7 @@ require "models/productmodels.php";
                             $getTypeName = $product->getTypeName($id);
                             foreach ($getTypeName as $value) :
                         ?>
-                        <li class="active"><?php echo $value['type_name'] ?></li>
+                                <li class="active"><?php echo $value['type_name'] ?></li>
 
                         <?php
                                 break;
@@ -456,103 +427,130 @@ require "models/productmodels.php";
                     <div class="row">
                         <?php
                         $product = new product;
-                        if (isset($_GET['id'])) :
 
-                            $id = $_GET['id'];
-                            $getProductByType = $product->getProductByType($id);
-                            foreach ($getProductByType as $value) : ?>
-                        <!-- product -->
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="./img/<?php echo $value['image'] ?>" alt="">
-                                    <!-- <div class="product-label">
-                                        <span class="sale">-30%</span>
-                                        <span class="new">NEW</span>
-                                    </div> -->
-                                </div>
-                                <div class="product-body">
-                                    <!-- <p class="product-category">Category</p> -->
-                                    <h3 class="product-name"><a
-                                            href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
-                                        </a>
-                                    </h3>
-                                    <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
-                                    <!-- <div class="product-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div> -->
-                                    <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                class="tooltipp">add to wishlist</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span
-                                                class="tooltipp">add to compare</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick
-                                                view</span></button>
+                        if (isset($_GET['search'])) :
+                            $keyword = $_GET['search'];
+                            $getbysearch = $product->search($keyword);
+                            foreach ($getbysearch as $value) : ?>
+                                <!-- product -->
+                                <div class="col-md-4 col-xs-6">
+                                    <div class="product">
+                                        <div class="product-img">
+                                            <img src="./img/<?php echo $value['image'] ?>" alt="">
+                                        </div>
+                                        <div class="product-body">
+                                            <h3 class="product-name"><a href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
+                                                </a>
+                                            </h3>
+                                            <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
+                                        </div>
+                                        <div class="add-to-cart">
+                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+                                                cart</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-                                        cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /product -->
-
-                        <?php endforeach;
+                                <!-- /product -->
+                                <?php
+                            endforeach;
                         else :
-                            $getAllProducts = $product->getAllProducts();
-                            foreach ($getAllProducts as $value) : ?>
-                        <!-- product -->
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="./img/<?php echo $value['image'] ?>" alt="">
-                                    <!-- <div class="product-label">
-                                                <span class="sale">-30%</span>
-                                                <span class="new">NEW</span>
-                                            </div> -->
-                                </div>
-                                <div class="product-body">
-                                    <!-- <p class="product-category">Category</p> -->
-                                    <h3 class="product-name"><a
-                                            href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
-                                        </a>
-                                    </h3>
-                                    <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
-                                    <!-- <div class="product-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div> -->
-                                    <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                class="tooltipp">add to wishlist</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span
-                                                class="tooltipp">add to compare</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick
-                                                view</span></button>
-                                    </div>
-                                </div>
-                                <div class="add-to-cart">
-                                    <a href="cart.php?id=<?php echo $value['id'] ?>">
-                                        <button class=" add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-                                            cart</button>
-                                    </a>
 
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /product -->
+                            if (isset($_GET['id'])) :
+
+                                $id = $_GET['id'];
+                                $getProductByType = $product->getProductByType($id);
+                                foreach ($getProductByType as $value) : ?>
+                                    <!-- product -->
+                                    <div class="col-md-4 col-xs-6">
+                                        <div class="product">
+                                            <div class="product-img">
+                                                <img src="./img/<?php echo $value['image'] ?>" alt="">
+                                                <!-- <div class="product-label">
+                                            <span class="sale">-30%</span>
+                                            <span class="new">NEW</span>
+                                        </div> -->
+                                            </div>
+                                            <div class="product-body">
+                                                <!-- <p class="product-category">Category</p> -->
+                                                <h3 class="product-name"><a href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
+                                                    </a>
+                                                </h3>
+                                                <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
+                                                <!-- <div class="product-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div> -->
+                                                <!-- <div class="product-btns">
+                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
+                                                    class="tooltipp">add to wishlist</span></button>
+                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span
+                                                    class="tooltipp">add to compare</span></button>
+                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick
+                                                    view</span></button>
+                                        </div> -->
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+                                                    cart</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /product -->
+
+                                <?php endforeach;
+                            else :
+                                $getAllProducts = $product->getAllProducts();
+                                foreach ($getAllProducts as $value) : ?>
+                                    <!-- product -->
+                                    <div class="col-md-4 col-xs-6">
+                                        <div class="product">
+                                            <div class="product-img">
+                                                <img src="./img/<?php echo $value['image'] ?>" alt="">
+                                                <!-- <div class="product-label">
+                                                    <span class="sale">-30%</span>
+                                                    <span class="new">NEW</span>
+                                                </div> -->
+                                            </div>
+                                            <div class="product-body">
+                                                <!-- <p class="product-category">Category</p> -->
+                                                <h3 class="product-name"><a href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
+                                                    </a>
+                                                </h3>
+                                                <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
+                                                <!-- <div class="product-rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div> -->
+                                                <div class="product-btns">
+                                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick
+                                                            view</span></button>
+                                                </div>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <a href="cart.php?id=<?php echo $value['id'] ?>">
+                                                    <button class=" add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+                                                        cart</button>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /product -->
 
                         <?php endforeach;
+
+                            endif;
 
                         endif;
+
                         ?>
 
                     </div>
@@ -661,9 +659,8 @@ require "models/productmodels.php";
                         <span class="copyright">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;<script>
-                            document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                document.write(new Date().getFullYear());
+                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </span>
                     </div>
