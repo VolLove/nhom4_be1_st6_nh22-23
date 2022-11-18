@@ -53,12 +53,16 @@ require "models/productmodels.php";
                     <div class="col-md-6">
                         <div class="header-search">
                             <form action="store.php?" method="GET">
-                                <select class=" input-select">
-                                    <option value="0">All Categories</option>
-                                    <option value="1">Category 01</option>
-                                    <option value="1">Category 02</option>
+                                <select name="searchtype" class=" input-select">
+                                    <option value = "-1">All Categories</option>
+                                    <?php
+                                        $getAllType = $gettype->getallType();
+                                            foreach ($getAllType as $value):
+                                                ?>
+                                                <option value="<?php echo $value['type_id']?>"><?php echo $value['type_name'] ?></option>
+                                    <?php endforeach;?>
                                 </select>
-                                <input type="text" name="search" class="input" placeholder="Search here">
+                                <input type="text" name="searchtxt" class="input" placeholder="Search here">
                                 <button type="submit" class="search-btn">Search
                                 </button>
                             </form>

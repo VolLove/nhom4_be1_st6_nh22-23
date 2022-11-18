@@ -51,13 +51,17 @@ require "models/productmodels.php";
                     <!-- SEARCH BAR -->
                     <div class="col-md-6">
                         <div class="header-search">
-                            <form action="store.php?" method="GET">
-                                <select class=" input-select">
-                                    <option value="0">All Categories</option>
-                                    <option value="1">Category 01</option>
-                                    <option value="1">Category 02</option>
+                        <form action="store.php?" method="GET">
+                                <select name="searchtype" class=" input-select">
+                                    <option value ="-1">All Categories</option>
+                                    <?php
+                                        $getAllType = $gettype->getallType();
+                                            foreach ($getAllType as $value):
+                                                ?>
+                                                <option value="<?php echo $value['type_id']?>"><?php echo $value['type_name'] ?></option>
+                                    <?php endforeach;?>
                                 </select>
-                                <input type="text" name="search" class="input" placeholder="Search here">
+                                <input type="text" name="searchtxt" class="input" placeholder="Search here">
                                 <button type="submit" class="search-btn">Search
                                 </button>
                             </form>
@@ -142,7 +146,6 @@ require "models/productmodels.php";
                     <!-- <li><a href="#">Hot Deals</a></li> -->
 
                     <?php
-                    $gettype = new Product;
                     $getallType = $gettype->getAlltype();
                     if (isset($_GET['id'])) {
                         $id = $_GET['id'];
@@ -190,7 +193,6 @@ require "models/productmodels.php";
                         <?php
                         if (isset($_GET['id'])) :
                             $id = $_GET['id'];
-                            $product = new product;
                             $getTypeName = $product->getTypeName($id);
                             foreach ($getTypeName as $value) :
                         ?>
@@ -405,7 +407,6 @@ require "models/productmodels.php";
                                 Sort By:
                                 <select class="input-select">
                                     <option value="0">Popular</option>
-                                    <option value="1">Position</option>
                                 </select>
                             </label>
 
@@ -427,83 +428,64 @@ require "models/productmodels.php";
                     <!-- store products -->
                     <div class="row">
                         <?php
-                        $product = new product;
-
-                        if (isset($_GET['search'])) :
-                            $keyword = $_GET['search'];
+                        if (isset($_GET['searchtxt'])) :
+                            $type_id;
+                            $keyword = $_GET['searchtxt'];
                             $getbysearch = $product->search($keyword);
-                            foreach ($getbysearch as $value) : ?>
-                        <!-- product -->
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="./img/<?php echo $value['image'] ?>" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <h3 class="product-name"><a
-                                            href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
-                                        </a>
-                                    </h3>
-                                    <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-                                        cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /product -->
-                        <?php
-                            endforeach;
-                        else :
-
-                            if (isset($_GET['id'])) :
-
-                                $id = $_GET['id'];
-                                $getProductByType = $product->getProductByType($id);
-                                foreach ($getProductByType as $value) : ?>
-                        <!-- product -->
-                        <div class="col-md-4 col-xs-6">
-                            <div class="product">
-                                <div class="product-img">
-                                    <img src="./img/<?php echo $value['image'] ?>" alt="">
-                                    <!-- <div class="product-label">
-                                            <span class="sale">-30%</span>
-                                            <span class="new">NEW</span>
-                                        </div> -->
-                                </div>
-                                <div class="product-body">
-                                    <!-- <p class="product-category">Category</p> -->
-                                    <h3 class="product-name"><a
-                                            href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
-                                        </a>
-                                    </h3>
-                                    <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
-                                    <!-- <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div> -->
-                                    <!-- <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                    class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span
-                                                    class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick
-                                                    view</span></button>
-                                        </div> -->
-                                </div>
-                                <div class="add-to-cart">
-                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
-                                        cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /product -->
-
-                        <?php endforeach;
+                         
+                            if(isset($_GET['searchtype'])):
+                                $type_id = $_GET['searchtype'];
+                                if($type_id==-1):
+                                    foreach ($getbysearch as $value) :  ?>
+                                        <!-- product -->
+                                        <div class="col-md-4 col-xs-6">
+                                            <div class="product">
+                                                <div class="product-img">
+                                                    <img src="./img/<?php echo $value['image'] ?>" alt="">
+                                                </div>
+                                                <div class="product-body">
+                                                    <h3 class="product-name"><a
+                                                            href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
+                                                        </a>
+                                                    </h3>
+                                                    <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
+                                                </div>
+                                                <div class="add-to-cart">
+                                                    <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+                                                        cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /product -->
+                                    <?php endforeach;
+                                   
+                                else:   
+                                    foreach ($getbysearch as $value) : 
+                                        if($value['type_id'] == $type_id):?>
+                                            <!-- product -->
+                                            <div class="col-md-4 col-xs-6">
+                                                <div class="product">
+                                                    <div class="product-img">
+                                                        <img src="./img/<?php echo $value['image'] ?>" alt="">
+                                                    </div>
+                                                    <div class="product-body">
+                                                        <h3 class="product-name"><a
+                                                                href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
+                                                            </a>
+                                                        </h3>
+                                                        <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
+                                                    </div>
+                                                    <div class="add-to-cart">
+                                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+                                                            cart</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /product -->
+                                        <?php endif;    
+                                    endforeach;
+                                endif;
+                            endif;
                             else :
                                 $getAllProducts = $product->getAllProducts();
                                 foreach ($getAllProducts as $value) : ?>
@@ -552,10 +534,7 @@ require "models/productmodels.php";
                         <!-- /product -->
 
                         <?php endforeach;
-
                             endif;
-
-                        endif;
 
                         ?>
 
