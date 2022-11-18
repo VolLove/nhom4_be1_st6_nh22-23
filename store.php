@@ -185,8 +185,8 @@ require "models/productmodels.php";
             <div class="row">
                 <div class="col-md-12">
                     <ul class="breadcrumb-tree">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">All Categories</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="store.php">All Categories</a></li>
                         <?php
                         if (isset($_GET['id'])) :
                             $id = $_GET['id'];
