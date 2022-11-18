@@ -75,7 +75,7 @@ require "models/productmodels.php";
                         <div class="header-ctn">
                             <!-- Wishlist -->
                             <div>
-                                <a href="#">
+                                <a href="wishlist.php">
                                     <i class="fa fa-heart-o"></i>
                                     <span>Your Wishlist</span>
                                     <!-- <div class="qty">2</div> -->
@@ -110,7 +110,7 @@ require "models/productmodels.php";
                                         <h5>SUBTOTAL: $0.00</h5>
                                     </div>
                                     <div class="cart-btns">
-                                        <a href="#">View Cart</a>
+                                        <a href="viewcard.php">View Cart</a>
                                         <a href="checkout.php">Checkout <i class="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
@@ -217,13 +217,13 @@ require "models/productmodels.php";
                 <div class="col-md-12">
                     <div class="section-title">
                         <h3 class="title">New Products</h3>
-                        <!-- <div class="section-nav">
+                        <div class="section-nav">
                             <ul class="section-tab-nav tab-nav">
                                 <li><a data-toggle="tab"
                                         href="#tab"></a>
                                 </li>
                             </ul>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
                 <!-- /section title -->
@@ -264,8 +264,8 @@ require "models/productmodels.php";
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
-                                            </div> -->
-                                            <!-- <div class="product-btns">
+                                            </div>
+                                                <div class="product-btns">
                                                 <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
                                                         class="tooltipp">add to
                                                         wishlist</span></button>
@@ -276,14 +276,14 @@ require "models/productmodels.php";
                                                         class="tooltipp">quick view</span></button>
                                             </div> -->
                                         </div>
-                                        <div class="add-to-cart">
-                                            <a href="cart.php?id=<?php echo $value['id'] ?>">
+                                        <!-- <div class="add-to-cart">
+                                            <a href="cart.php?id=">
                                                 <button class="add-to-cart-btn">
                                                     <i class="fa fa-shopping-cart"></i>add
                                                     tocart
                                                 </button></a>
 
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <?php endforeach; ?>
                                 </div>
