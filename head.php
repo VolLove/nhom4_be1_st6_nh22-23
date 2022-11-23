@@ -1,34 +1,122 @@
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<!-- HEADER -->
+<header>
+  <!-- TOP HEADER -->
+  <div id="top-header">
+    <div class="container">
+      <ul class="header-links pull-left">
+        <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
+        <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
+        <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+      </ul>
+      <ul class="header-links pull-right">
+        <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
+        <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- /TOP HEADER -->
 
-    <title>Electro - HTML Ecommerce Template</title>
+  <!-- MAIN HEADER -->
+  <div id="header">
+    <!-- container -->
+    <div class="container">
+      <!-- row -->
+      <div class="row">
+        <!-- LOGO -->
+        <div class="col-md-3">
+          <div class="header-logo">
+            <a href="index.php" class="logo">
+              <img src="./img/logo.png" alt="">
+            </a>
+          </div>
+        </div>
+        <!-- /LOGO -->
 
-    <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+        <!-- SEARCH BAR -->
+        <div class="col-md-6">
+          <div class="header-search">
+            <form action="store.php?" method="GET">
+              <select name="searchtype" class=" input-select">
+                <option value="-1">All Categories</option>
+                <?php
+                $getAllType = $gettype->getallType();
+                foreach ($getAllType as $value) :
+                ?>
+                  <option value="<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?>
+                  </option>
+                <?php endforeach; ?>
+              </select>
+              <input type="text" name="searchtxt" class="input" placeholder="Search here">
+              <button type="submit" class="search-btn">Search
+              </button>
+            </form>
+          </div>
+        </div>
+        <!-- /SEARCH BAR -->
 
-    <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+        <!-- ACCOUNT -->
+        <div class="col-md-3 clearfix">
+          <div class="header-ctn">
+            <!-- Wishlist -->
+            <div>
+              <a href="wishlist.php">
+                <i class="fa fa-heart-o"></i>
+                <span>Your Wishlist</span>
+                <!-- <div class="qty">2</div> -->
+              </a>
+            </div>
+            <!-- /Wishlist -->
 
-    <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="css/slick.css" />
-    <link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+            <!-- Cart -->
+            <div class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                <i class="fa fa-shopping-cart"></i>
+                <span>Your Cart</span>
+                <!-- <div class="qty">3</div> -->
+              </a>
+              <div class="cart-dropdown">
+                <div class="cart-list">
 
-    <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+                  <!-- <div class="product-widget">
+                                            <div class="product-img">
+                                                <img src="./img/product01.png" alt="">
+                                            </div>
+                                            <div class="product-body">
+                                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                                <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+                                            </div>
+                                            <button class="delete"><i class="fa fa-close"></i></button>
+                                        </div> -->
 
-    <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+                </div>
+                <div class="cart-summary">
+                  <small>Item(s) selected</small>
+                  <h5>SUBTOTAL: $0.00</h5>
+                </div>
+                <div class="cart-btns">
+                  <a href="viewcard.php">View Cart</a>
+                  <a href="checkout.php">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+            </div>
+            <!-- /Cart -->
 
-    <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="css/style.css" />
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-
-    <?php
-         $gettype = new Product;
-         $product = new product;
-    ?>
+            <!-- Menu Toogle -->
+            <div class="menu-toggle">
+              <a href="#">
+                <i class="fa fa-bars"></i>
+                <span>Menu</span>
+              </a>
+            </div>
+            <!-- /Menu Toogle -->
+          </div>
+        </div>
+        <!-- /ACCOUNT -->
+      </div>
+      <!-- row -->
+    </div>
+    <!-- container -->
+  </div>
+  <!-- /MAIN HEADER -->
+</header>
+<!-- /HEADER -->
