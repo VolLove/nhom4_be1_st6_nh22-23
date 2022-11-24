@@ -476,6 +476,8 @@
                         foreach ($getProductById as $getValue) :
                             if ($countNumber < 4) :
                                 if ($value['type_id'] == $getValue['type_id'] && $value['id'] != $getValue['id']) :
+                                    $countNumber++;
+
                 ?>
                 <!-- product -->
                 <div class="col-md-3 col-xs-6">
@@ -490,27 +492,26 @@
                                     href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a>
                             </h3>
                             <h4 class="product-price"><?php echo number_format($value['price']) ?></h4>
-                            <div class="product-rating">
-                            </div>
                             <div class="product-btns">
-                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add
-                                        to wishlist</span></button>
-                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add
-                                        to compare</span></button>
-                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick
-                                        view</span></button>
+                                <?php
+                                                    if (isset($_SESSION['cart'][$value['id']])) :
+                                                    ?>
+                                <button class="remove-to-wishlist"><a
+                                        href="cart.php?remove_id=<?php echo $value['id'] ?>"><i
+                                            class="fa fa-heart"></i><span class="tooltipp">remove from
+                                            wishlist</span></a></button>
+                                <?php else : ?>
+                                <button class="add-to-wishlist"><a href="cart.php?add_id=<?php echo $value['id'] ?>"> <i
+                                            class="fa fa-heart-o"></i><span class="tooltipp">add to
+                                            wishlist</span>
+                                    </a></button>
+                                <?php endif; ?>
                             </div>
-                        </div>
-                        <div class="add-to-cart">
-                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
                         </div>
                     </div>
                 </div>
                 <!-- /product -->
-                <?php
-                                    $countNumber++;
-
-                                endif;
+                <?php endif;
                             endif;
                         endforeach;
                     endforeach;
