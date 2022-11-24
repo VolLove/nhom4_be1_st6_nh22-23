@@ -1,0 +1,21 @@
+.tableviewcart {
+  width: 100%;
+}
+
+.tableviewcart .collumname {
+  padding-bottom: 50px;
+}
+.tableviewcart tr th {
+  min-width: 100px;
+}
+
+.tableviewcart .rowproduct {
+  margin-top: 20px;
+  display: flex;
+}
+.tableviewcart .rowproduct .imagesproduct img {
+  margin-right: 10px;
+  width: 100px;
+}
+.tableviewcart .rowproduct .nameproduct {
+}

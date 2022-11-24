@@ -64,10 +64,49 @@
     <div class="section">
         <!-- container -->
         <div class="container">
-            <!-- row -->
-            <div class="row">
-            </div>
-            <!-- /row -->
+
+            <table class="tableviewcart">
+                <tr class="collumname">
+                    <th>Sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thao tác</th>
+                </tr>
+                <?php
+                $getAllProduct = $product->getAllProducts();
+                if (isset($_SESSION['cart'])) :
+                    foreach ($_SESSION['cart'] as $key => $value) :
+                        foreach ($getAllProduct as $valuePro) :
+                            if ($key == $valuePro['id']) :
+                ?>
+                <tr>
+                    <th class="rowproduct">
+                        <div class="imagesproduct">
+                            <img src="./img/<?php echo $valuePro['image'] ?>" alt="">
+                        </div>
+                        <div class="nameproduct">
+                            <a href='product.php?id=<?php echo $valuePro['id'] ?>'><?php echo $valuePro['name'] ?></a>
+                        </div>
+                    </th>
+                    <th>
+                        <p><?php echo number_format($valuePro['price']) ?> VND</p>
+                    </th>
+                    <th>
+                        <p><?php echo $value ?></p>
+                    </th>
+                    <th>
+                        <a class="primary-btn" href="cart.php?cart_remove=<?php echo $key ?>">Delete</a>
+                    </th>
+                </tr>
+                <?php
+                            endif;
+                        endforeach;
+                    endforeach;
+                endif;
+                ?>
+                </tr>
+            </table>
+
         </div>
         <!-- /container -->
     </div>

@@ -26,8 +26,8 @@
                     $gettype = new Product;
                     $getallType = $gettype->getAlltype();
                     foreach ($getallType as $value) : ?>
-                        <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
-                        </li>
+                    <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                    </li>
                     <?php
                     endforeach;
                     ?>
@@ -107,7 +107,8 @@
                                 <div class="caption">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                         incididunt.</p>
-                                    <input class="input" type="password" name="password" placeholder="Enter Your Password">
+                                    <input class="input" type="password" name="password"
+                                        placeholder="Enter Your Password">
                                 </div>
                             </div>
                         </div>
@@ -173,19 +174,33 @@
                             <div><strong>TOTAL</strong></div>
                         </div>
                         <div class="order-products">
-
-                            <!-- <div class="order-col">
-                                <div>2x Product Name Goes Here</div>
-                                <div>$980.00</div>
-                            </div> -->
+                            <?php
+                            $total = 0;
+                            $getAllProduct = $product->getAllProducts();
+                            if (isset($_SESSION['cart'])) :
+                                foreach ($_SESSION['cart'] as $key => $value) :
+                                    foreach ($getAllProduct as $valuePro) :
+                                        if ($key == $valuePro['id']) :
+                            ?>
+                            <div class="order-col">
+                                <div><?php echo $value ?>x <?php echo $valuePro['name'] ?></div>
+                                <div><?php echo number_format($valuePro['price'] * $value) ?> VND</div>
+                            </div>
+                            <?php
+                                            $total = $total + $valuePro['price'] * $value;
+                                        endif;
+                                    endforeach;
+                                endforeach;
+                            endif;
+                            ?>
                         </div>
-                        <div class="order-col">
+                        <!-- <div class="order-col">
                             <div>Shiping</div>
                             <div><strong>FREE</strong></div>
-                        </div>
+                        </div> -->
                         <div class="order-col">
                             <div><strong>TOTAL</strong></div>
-                            <div><strong class="order-total">$0</strong></div>
+                            <div><strong class="order-total"><?php echo number_format($total) ?></strong> VND</div>
                         </div>
                     </div>
                     <div class="payment-method">
@@ -322,8 +337,9 @@
                         <span class="copyright">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;<script>
-                                document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            document.write(new Date().getFullYear());
+                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
+                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </span>
                     </div>

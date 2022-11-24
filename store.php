@@ -218,7 +218,7 @@
                                     <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
                                     <div class="product-btns">
                                         <?php
-                                                if (isset($_SESSION['cart'][$value['id']])) :
+                                                if (isset($_SESSION['wish'][$value['id']])) :
                                                 ?>
                                         <button class="remove-to-wishlist"><a
                                                 href="cart.php?remove_id=<?php echo $value['id'] ?>"><i
@@ -262,7 +262,7 @@
                                     <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
                                     <div class="product-btns">
                                         <?php
-                                                        if (isset($_SESSION['cart'][$value['id']])) :
+                                                        if (isset($_SESSION['wish'][$value['id']])) :
                                                         ?>
                                         <button class="remove-to-wishlist"><a
                                                 href="cart.php?remove_id=<?php echo $value['id'] ?>"><i
@@ -300,7 +300,7 @@
                                     <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
                                     <div class="product-btns">
                                         <?php
-                                                            if (isset($_SESSION['cart'][$value['id']])) :
+                                                            if (isset($_SESSION['wish'][$value['id']])) :
                                                             ?>
                                         <button class="remove-to-wishlist"><a
                                                 href="cart.php?remove_id=<?php echo $value['id'] ?>"><i
@@ -347,7 +347,7 @@
 
                                     <div class="product-btns">
                                         <?php
-                                                if (isset($_SESSION['cart'][$value['id']])) :
+                                                if (isset($_SESSION['wish'][$value['id']])) :
                                                 ?>
                                         <button class="remove-to-wishlist"><a
                                                 href="cart.php?remove_id=<?php echo $value['id'] ?>"><i

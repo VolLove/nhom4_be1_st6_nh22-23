@@ -126,18 +126,11 @@
 
                     </div>
                 </div>
-                <?php endforeach;
-                endif; ?>
+
                 <!-- /Product thumb imgs -->
 
                 <!-- Product details -->
-                <?php
-                $product = new product;
-                if (isset($_GET['id'])) :
-                    $id = $_GET['id'];
-                    $getProductById = $product->getProductByID($id);
-                    foreach ($getProductById as $value) :
-                ?>
+
                 <div class="col-md-5">
                     <div class="product-details">
                         <h2 class="product-name"><?php echo $value['name'] ?></h2>
@@ -174,21 +167,27 @@
                         </div> -->
 
                         <div class="add-to-cart">
-                            <div class="qty-label">
-                                Qty
-                                <div class="input-number">
-                                    <input name="" type="number" value="1">
-                                    <span class="qty-up">+</span>
-                                    <span class="qty-down">-</span>
+                            <form action="cart.php?" method="GET">
+                                <div class="qty-label">
+                                    Qty
+                                    <div class="input-number">
+                                        <input name="number" type="number" value="1">
+                                        <span class="qty-up">+</span>
+                                        <span class="qty-down">-</span>
+                                        <input type="hidden" name="id" value="<?php echo $value['id'] ?>">
+
+                                    </div>
                                 </div>
-                            </div>
-                            <button class="add-to-cart-btn"><a href=""> <i class="fa fa-shopping-cart"></i> add to
-                                    cart</a></button>
+                                <button class="add-to-cart-btn">
+                                    <i class="fa fa-shopping-cart"></i> add to cart
+                                </button>
+                            </form>
+
                         </div>
 
                         <ul class="product-btns">
                             <?php
-                                    if (isset($_SESSION['cart'][$value['id']])) :
+                                    if (isset($_SESSION['wish'][$value['id']])) :
                                     ?>
                             <li><a href="cart.php?remove_id=<?php echo $value['id'] ?>"><i class="fa fa-heart"></i> add
                                     to wishlist</a></li>
@@ -231,8 +230,6 @@
 
                     </div>
                 </div>
-                <?php endforeach;
-                endif; ?>
                 <!-- /Product details -->
 
                 <!-- Product tab -->
@@ -241,42 +238,33 @@
                         <!-- product tab nav -->
                         <ul class="tab-nav">
                             <li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-                            <li><a data-toggle="tab" href="#tab2">Details</a></li>
+                            <!-- <li><a data-toggle="tab" href="#tab2">Details</a></li> -->
                             <li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
                         </ul>
                         <!-- /product tab nav -->
 
                         <!-- product tab content -->
                         <div class="tab-content">
-                            <?php
-                            $product = new product;
-                            if (isset($_GET['id'])) :
-                                $id = $_GET['id'];
-                                $getProductById = $product->getProductByID($id);
-                                foreach ($getProductById as $value) :
-                            ?>
+
                             <!-- tab1  -->
                             <div id="tab1" class="tab-pane fade in active">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p><?php echo $value['description'] ?>
-                                        </p>
+                                        <p><?php echo $value['description'] ?></p>
                                     </div>
                                 </div>
                             </div>
                             <!-- /tab1  -->
 
                             <!-- tab2  -->
-                            <div id="tab2" class="tab-pane fade in">
+                            <!-- <div id="tab2" class="tab-pane fade in">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p><?php echo $value['description'] ?>
-                                        </p>
+                                        <p></p>
                                     </div>
                                 </div>
-                            </div>
-                            <?php endforeach;
-                            endif; ?>
+                            </div> -->
+
                             <!-- /tab2  -->
 
                             <!-- tab3  -->
@@ -470,6 +458,8 @@
                         <!-- /product tab content  -->
                     </div>
                 </div>
+                <?php endforeach;
+                endif; ?>
                 <!-- /product tab -->
             </div>
             <!-- /row -->
@@ -519,7 +509,7 @@
                             <h4 class="product-price"><?php echo number_format($value['price']) ?></h4>
                             <div class="product-btns">
                                 <?php
-                                                    if (isset($_SESSION['cart'][$value['id']])) :
+                                                    if (isset($_SESSION['wish'][$value['id']])) :
                                                     ?>
                                 <button class="remove-to-wishlist"><a
                                         href="cart.php?remove_id=<?php echo $value['id'] ?>"><i

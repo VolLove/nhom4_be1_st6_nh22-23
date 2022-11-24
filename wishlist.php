@@ -62,7 +62,7 @@
             <?php
             $getAllProduct = $product->getAllProducts();
             foreach ($getAllProduct as $value) :
-                if (isset($_SESSION['cart'][$value['id']])) :
+                if (isset($_SESSION['wish'][$value['id']])) :
             ?>
             <!-- product -->
             <div class="col-md-4 col-xs-6">
