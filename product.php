@@ -141,24 +141,24 @@
                 <div class="col-md-5">
                     <div class="product-details">
                         <h2 class="product-name"><?php echo $value['name'] ?></h2>
-                        <div>
-                            <!-- <div class="product-rating">
+                        <!-- <div>
+                            <div class="product-rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-o"></i>
-                            </div> -->
+                            </div>
                             <a class="review-link" href="#">10 Review(s) | Add your review</a>
-                        </div>
+                        </div> -->
                         <div>
                             <h3 class="product-price"><?php echo number_format($value['price']) ?> VND</h3>
-                            <!-- <del class="product-old-price">price</del> -->
-                            <span class="product-available">In Stock</span>
+                            <!-- <del class="product-old-price">price</del>
+                            <span class="product-available">In Stock</span> -->
                         </div>
                         <p><?php echo $value['description'] ?></p>
 
-                        <div class="product-options">
+                        <!-- <div class="product-options">
                             <label>
                                 Size
                                 <select class="input-select">
@@ -171,29 +171,54 @@
                                     <option value="0">Red</option>
                                 </select>
                             </label>
-                        </div>
+                        </div> -->
 
                         <div class="add-to-cart">
                             <div class="qty-label">
                                 Qty
                                 <div class="input-number">
-                                    <input type="number">
+                                    <input name="" type="number" value="1">
                                     <span class="qty-up">+</span>
                                     <span class="qty-down">-</span>
                                 </div>
                             </div>
-                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                            <button class="add-to-cart-btn"><a href=""> <i class="fa fa-shopping-cart"></i> add to
+                                    cart</a></button>
                         </div>
 
                         <ul class="product-btns">
-                            <li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
-                            <li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li>
+                            <?php
+                                    if (isset($_SESSION['cart'][$value['id']])) :
+                                    ?>
+                            <li><a href="cart.php?remove_id=<?php echo $value['id'] ?>"><i class="fa fa-heart"></i> add
+                                    to wishlist</a></li>
+                            <?php else : ?>
+                            <li><a href="cart.php?add_id=<?php echo $value['id'] ?>"><i class="fa fa-heart-o"></i> add
+                                    to wishlist</a></li>
+                            <?php endif; ?>
+                            <!-- <li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li> -->
                         </ul>
 
                         <ul class="product-links">
                             <li>Category:</li>
-                            <li><a href="#">Headphones</a></li>
-                            <li><a href="#">Accessories</a></li>
+                            <?php
+                                    $getallType = $gettype->getAlltype();
+                                    if (isset($_GET['id'])) :
+                                        $id = $_GET['id'];
+                                        $getProductById = $product->getProductByID($id);
+                                        foreach ($getallType as $typeValue) :
+                                            if ($value['type_id'] == $typeValue['type_id']) :
+                                    ?>
+                            <li>
+                                <a href="store.php?id=<?php echo $typeValue['type_id'] ?>">
+                                    <?php echo $typeValue['type_name'] ?>
+                                </a>
+                            </li>
+                            <?php
+                                            endif;
+                                        endforeach;
+                                    endif;
+                                    ?>
                         </ul>
 
                         <ul class="product-links">
