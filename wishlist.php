@@ -18,7 +18,7 @@
             <div id="responsive-nav">
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
-                    <li class="active"><a href="index.php">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <!-- <li><a href="#">Hot Deals</a></li> -->
                     <li><a href="store.php">Categories</a></li>
                     <?php
@@ -59,13 +59,11 @@
     <!-- /BREADCRUMB -->
     <div id="store" class="container">
         <div class="row">
-
             <?php
             $getAllProduct = $product->getAllProducts();
             foreach ($getAllProduct as $value) :
-                if ($value['wish'] == 1) :
+                if (isset($_SESSION['cart'][$value['id']])) :
             ?>
-
             <!-- product -->
             <div class="col-md-4 col-xs-6">
                 <div class="product">
@@ -79,8 +77,10 @@
                         </h3>
                         <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
                         <div class="product-btns">
-                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to
-                                    wishlist</span></button>
+                            <button class="remove-to-wishlist"><a
+                                    href="cart.php?remove_id=<?php echo $value['id'] ?>"><i
+                                        class="fa fa-heart"></i><span class="tooltipp">remove from
+                                        wishlist</span></a></button>
                         </div>
                     </div>
                 </div>

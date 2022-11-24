@@ -1002,7 +1002,9 @@ textarea.input {
   height: 1px;
   background-color: #e4e7ed;
 }
-
+.product .product-body .product-btns > a {
+  padding: 10px;
+}
 .product .product-body .product-btns > button {
   position: relative;
   width: 40px;

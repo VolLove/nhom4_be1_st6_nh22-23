@@ -131,17 +131,30 @@
                                                 <?php echo number_format($value['price']) ?> VND
                                                 <!-- <del class="product-old-price">?></del> -->
                                             </h4>
-                                            <div class="product-rating">
+                                            <!-- <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
-                                            </div>
+                                            </div> -->
                                             <div class="product-btns">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                        class="tooltipp">add to
-                                                        wishlist</span></button>
+                                                <?php
+                                                    if (isset($_SESSION['cart'][$value['id']])) :
+                                                    ?>
+                                                <button class="remove-to-wishlist"><a
+                                                        href="cart.php?remove_id=<?php echo $value['id'] ?>"><i
+                                                            class="fa fa-heart"></i><span class="tooltipp">remove from
+                                                            wishlist</span></a></button>
+                                                <?php else : ?>
+                                                <button class="add-to-wishlist"><a
+                                                        href="cart.php?add_id=<?php echo $value['id'] ?>"> <i
+                                                            class="fa fa-heart-o"></i><span class="tooltipp">add to
+                                                            wishlist</span>
+                                                    </a></button>
+
+                                                <?php endif; ?>
+
                                                 <!-- <button class="add-to-compare"><i class="fa fa-exchange"></i><span
                                                         class="tooltipp">add to
                                                         compare</span></button>
@@ -149,14 +162,13 @@
                                                         class="tooltipp">quick view</span></button> -->
                                             </div>
                                         </div>
-                                        <div class="add-to-cart">
+                                        <!-- <div class="add-to-cart">
                                             <a href="cart.php?id=">
                                                 <button class="add-to-cart-btn">
                                                     <i class="fa fa-shopping-cart"></i>add
                                                     tocart
                                                 </button></a>
-
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <?php endforeach; ?>
                                 </div>
