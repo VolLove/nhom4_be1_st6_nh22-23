@@ -326,6 +326,7 @@
 
                         else :
                             $getAllProducts = $product->getAllProducts();
+                            $total = count($getAllProducts);
                             foreach ($getAllProducts as $value) : ?>
                         <!-- product -->
                         <div class="col-md-4 col-xs-6">
@@ -378,10 +379,13 @@
                     <div class="store-filter clearfix">
                         <span class="store-qty">Showing 20-100 products</span>
                         <ul class="store-pagination">
-                            <li class="active">1</li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
+                            <?php
+                            $perPage = 6;
+                            $totalLinks = ceil($total / $perPage);
+                            for ($i = 1; $i <= $totalLinks; $i++) :
+                            ?>
+                            <li><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                            <?php endfor; ?>
                             <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
                         </ul>
                     </div>
