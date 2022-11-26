@@ -198,11 +198,28 @@
 
                     <!-- store products -->
                     <div class="row">
+                        <!-- page value -->
+                        <?php
+                        $perPage = 6;
+                        $page = 0;
+                        if (!isset($_GET['page'])) {
+
+                            $page = 1;
+                        } else {
+
+                            $page = $_GET['page'];
+                        }
+                        ?>
+                        <!-- page value -->
+
+                        <!-- produce search by type_id -->
                         <?php
                         if (isset($_GET['id'])) :
                             $type_id = $_GET['id'];
-                            $getById = $product->getProductByType($type_id);
-                            foreach ($getById as $value) :
+                            $getByTypeId = $product->getProductByType($type_id);
+                            $total = count($getByTypeId);
+                            $countPage = ceil($total / $perPage);
+                            foreach ($getByTypeId as $value) :
                         ?>
                         <!-- product -->
                         <div class="col-md-4 col-xs-6">
@@ -221,12 +238,12 @@
                                                 if (isset($_SESSION['wish'][$value['id']])) :
                                                 ?>
                                         <button class="remove-to-wishlist"><a
-                                                href="cart.php?remove_id=<?php echo $value['id'] ?>"><i
+                                                href="cart.php?remove_id=<?php echo $value['id']; ?>"><i
                                                     class="fa fa-heart"></i><span class="tooltipp">remove from
                                                     wishlist</span></a></button>
                                         <?php else : ?>
                                         <button class="add-to-wishlist"><a
-                                                href="cart.php?add_id=<?php echo $value['id'] ?>"> <i
+                                                href="cart.php?add_id=<?php echo $value['id']; ?>"> <i
                                                     class="fa fa-heart-o"></i><span class="tooltipp">add to
                                                     wishlist</span>
                                             </a></button>
@@ -236,14 +253,37 @@
                             </div>
                         </div>
                         <!-- /product -->
-                        <?php
-                            endforeach;
 
-                        elseif (isset($_GET['searchtxt'])) :
+                        <?php
+                            endforeach; ?>
+                        <!-- store bottom filter -->
+                        <div class="store-filter clearfix">
+                            <!-- <span class="store-qty">Showing 20-100 products</span> -->
+                            <ul class="store-pagination">
+                                <?php for ($i = 1; $i <= $countPage; $i++) :
+                                        if ($i == $page) :
+                                    ?>
+                                <li class="active"><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                                <?php else : ?>
+                                <li><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+
+                                <?php endif;
+                                    endfor; ?>
+                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- /store bottom filter -->
+                        <!-- produce search by type_id -->
+
+                        <!-- product seach -->
+                        <?php elseif (isset($_GET['searchtxt'])) :
+
                             $type_id;
                             $keyword = $_GET['searchtxt'];
                             $getbysearch = $product->search($keyword);
-
+                            $total = count($getbysearch);
+                            $countPage = ceil($total / $perPage);
+                            $getPage = $product->getPage($page, $perPage);
                             if (isset($_GET['searchtype'])) :
                                 $type_id = $_GET['searchtype'];
                                 if ($type_id == -1) :
@@ -281,9 +321,28 @@
                             </div>
                         </div>
                         <!-- /product -->
-                        <?php endforeach;
+                        <?php endforeach; ?>
+                        <!-- store bottom filter -->
+                        <div class="store-filter clearfix">
+                            <span class="store-qty">Showing 20-100 products</span>
+                            <ul class="store-pagination">
+                                <?php for ($i = 1; $i <= $countPage; $i++) :
+                                                if ($i == $page) :
+                                            ?>
+                                <li class="active"><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                                <?php else : ?>
+                                <li><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
 
-                                else :
+                                <?php endif;
+                                            endfor; ?>
+                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- /store bottom filter -->
+                        <!-- product seach -->
+
+
+                        <?php else :
                                     foreach ($getbysearch as $value) :
                                         if ($value['type_id'] == $type_id) : ?>
                         <!-- product -->
@@ -319,15 +378,48 @@
                             </div>
                         </div>
                         <!-- /product -->
-                        <?php endif;
+                        <?php
+                                        endif;
                                     endforeach;
+                                    ?>
+                        <!-- store bottom filter -->
+                        <div class="store-filter clearfix">
+                            <span class="store-qty">Showing 20-100 products</span>
+                            <ul class="store-pagination">
+                                <?php for ($i = 1; $i <= $countPage; $i++) :
+                                                if ($i == $page) :
+                                            ?>
+                                <li class="active"><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                                <?php else : ?>
+                                <li><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+
+                                <?php endif;
+                                            endfor;
+                                            ?>
+                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- /store bottom filter -->
+                        <?php
                                 endif;
                             endif;
 
                         else :
                             $getAllProducts = $product->getAllProducts();
-                            $total = count($getAllProducts);
-                            foreach ($getAllProducts as $value) : ?>
+                            $total = count($product->getAllProducts());
+                            $perPage = 6;
+                            $page = 0;
+
+                            if (!isset($_GET['page'])) {
+
+                                $page = 1;
+                            } else {
+
+                                $page = $_GET['page'];
+                            }
+                            $countPage = ceil($total / $perPage);
+                            $getPage = $product->getPage($page, $perPage);
+                            foreach ($getPage as $value) : ?>
                         <!-- product -->
                         <div class="col-md-4 col-xs-6">
                             <div class="product">
@@ -361,35 +453,41 @@
                                                     wishlist</span>
                                             </a></button>
 
-                                        <?php endif; ?>
+                                        <?php
+                                                endif; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- /product -->
 
-                        <?php endforeach;
-                        endif;
-                        ?>
+                        <?php
+                            endforeach; ?>
+                        <!-- store bottom filter -->
+                        <div class="store-filter clearfix">
+                            <ul class="store-pagination">
+                                <?php
+                                    for ($i = 1; $i <= $countPage; $i++) :
+                                        if ($i == $page) :
+                                    ?>
+                                <li class="active"><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                                <?php else : ?>
+                                <li><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+
+                                <?php
+                                        endif;
+                                    endfor; ?>
+                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- /store bottom filter -->
+                        <?php
+                        endif; ?>
 
                     </div>
                     <!-- /store products -->
 
-                    <!-- store bottom filter -->
-                    <div class="store-filter clearfix">
-                        <span class="store-qty">Showing 20-100 products</span>
-                        <ul class="store-pagination">
-                            <?php
-                            $perPage = 6;
-                            $totalLinks = ceil($total / $perPage);
-                            for ($i = 1; $i <= $totalLinks; $i++) :
-                            ?>
-                            <li><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
-                            <?php endfor; ?>
-                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                        </ul>
-                    </div>
-                    <!-- /store bottom filter -->
+
                 </div>
                 <!-- /STORE -->
             </div>
