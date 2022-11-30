@@ -283,12 +283,17 @@
                             </li>
 
                             <?php endif;
-                                endfor; ?>
+                                endfor;
+                                $pagenext = $page + 1;
+                                if ($pagenext <= $countPage) :
+                                    ?>
                             <li>
-                                <a href="#">
+                                <a href="store.php?page=<?php echo $pagenext; ?>">
                                     <i class="fa fa-angle-right"></i>
                                 </a>
                             </li>
+                            <?php endif; ?>
+
                         </ul>
                     </div>
                     <!-- /store bottom filter -->
@@ -370,12 +375,17 @@
                             </li>
 
                             <?php endif;
-                                    endfor; ?>
+                                    endfor;
+
+                                    $pagenext = $page + 1;
+                                    if ($pagenext <= $countPage) :
+                                    ?>
                             <li>
-                                <a href="#">
+                                <a href="store.php?page=<?php echo $pagenext; ?>">
                                     <i class="fa fa-angle-right"></i>
                                 </a>
                             </li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                     <!-- /store bottom filter -->
@@ -455,13 +465,15 @@
 
                             <?php endif;
                                     endfor;
-                                ?>
+                                    $pagenext = $page + 1;
+                                    if ($pagenext <= $countPage) :
+                                    ?>
                             <li>
-                                <a href="#">
-                                    <i class="fa fa-angle-right">
-                                    </i>
+                                <a href="store.php?page=<?php echo $pagenext; ?>">
+                                    <i class="fa fa-angle-right"></i>
                                 </a>
                             </li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                     <!-- /store bottom filter -->
@@ -545,8 +557,16 @@
 
                             <?php
                                 endif;
-                            endfor; ?>
-                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                            endfor;
+                            $pagenext = $page + 1;
+                            if ($pagenext <= $countPage) :
+                            ?>
+                            <li>
+                                <a href="store.php?page=<?php echo $pagenext; ?>">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                     <!-- /store bottom filter -->

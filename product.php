@@ -105,6 +105,7 @@
                 if (isset($_GET['id'])) :
                     $id = $_GET['id'];
                     $getProductById = $product->getProductByID($id);
+                    $getImageById = $product->getImageById($id);
                     foreach ($getProductById as $value) :
                 ?>
                 <!-- Product main img -->
@@ -113,6 +114,14 @@
                         <div class="product-preview">
                             <img src="img/<?php echo $value['image'] ?>" alt="">
                         </div>
+                        <?php
+                                foreach ($getImageById as $linkImage) :
+                                ?>
+                        <div class="product-preview">
+                            <img src="img/<?php echo $linkImage['image_name'] ?>" alt="">
+                        </div>
+
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <!-- /Product main img -->
@@ -123,7 +132,14 @@
                         <div class="product-preview">
                             <img src="img/<?php echo $value['image'] ?>" alt="">
                         </div>
+                        <?php
+                                foreach ($getImageById as $linkImage) :
+                                ?>
+                        <div class="product-preview">
+                            <img src="img/<?php echo $linkImage['image_name'] ?>" alt="">
+                        </div>
 
+                        <?php endforeach; ?>
                     </div>
                 </div>
 
@@ -238,8 +254,8 @@
                         <!-- product tab nav -->
                         <ul class="tab-nav">
                             <li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-                            <!-- <li><a data-toggle="tab" href="#tab2">Details</a></li> -->
-                            <li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
+                            <li><a data-toggle="tab" href="#tab2">Details</a></li>
+                            <!-- <li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li> -->
                         </ul>
                         <!-- /product tab nav -->
 
@@ -257,27 +273,27 @@
                             <!-- /tab1  -->
 
                             <!-- tab2  -->
-                            <!-- <div id="tab2" class="tab-pane fade in">
+                            <div id="tab2" class="tab-pane fade in">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p></p>
+                                        <p><?php echo $value['details'] ?></p>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
 
                             <!-- /tab2  -->
 
                             <!-- tab3  -->
-                            <div id="tab3" class="tab-pane fade in">
-                                <div class="row">
-                                    <!-- Rating -->
-                                    <div class="col-md-3">
+                            <!-- <div id="tab3" class="tab-pane fade in">
+                                <div class="row"> -->
+                            <!-- Rating -->
+                            <!-- <div class="col-md-3">
                                         <div id="rating">
                                             <div class="rating-avg">
                                                 <span>4.5</span>
                                                 <div class="rating-stars">
                                                     <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
+                              `                      <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star-o"></i>
@@ -351,11 +367,11 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
-                                    <!-- /Rating -->
+                                    </div> -->
+                            <!-- /Rating -->
 
-                                    <!-- Reviews -->
-                                    <div class="col-md-6">
+                            <!-- Reviews -->
+                            <!-- <div class="col-md-6">
                                         <div id="reviews">
                                             <ul class="reviews">
                                                 <li>
@@ -421,11 +437,11 @@
                                                 <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
                                             </ul>
                                         </div>
-                                    </div>
-                                    <!-- /Reviews -->
+                                    </div> -->
+                            <!-- /Reviews -->
 
-                                    <!-- Review Form -->
-                                    <div class="col-md-3">
+                            <!-- Review Form -->
+                            <!-- <div class="col-md-3">
                                         <div id="review-form">
                                             <form class="review-form">
                                                 <input class="input" type="text" placeholder="Your Name">
@@ -449,10 +465,10 @@
                                                 <button class="primary-btn">Submit</button>
                                             </form>
                                         </div>
-                                    </div>
-                                    <!-- /Review Form -->
-                                </div>
-                            </div>
+                                    </div> -->
+                            <!-- /Review Form -->
+                            <!-- </div>
+                            </div> -->
                             <!-- /tab3  -->
                         </div>
                         <!-- /product tab content  -->
@@ -589,6 +605,21 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                 incididunt ut.</p>
                             <ul class="footer-links">
+                                <li><a href="#"><i class="fa fa-map-marker"></i>53 Vo Van Ngan Street, Linh Chieu
+                                        District, Thu Duc City, Ho Chi Minh City</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
+                                <li><a href="#"><i class="fa fa-envelope-o"></i>daotanquocviet@gmail.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">About Us</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt ut.</p>
+                            <ul class="footer-links">
                                 <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
                                 <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
                                 <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
@@ -636,7 +667,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- /row -->
             </div>
             <!-- /container -->
