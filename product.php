@@ -135,7 +135,7 @@
                         <?php
                                 foreach ($getImageById as $linkImage) :
                                 ?>
-                        <div class="product-preview">
+                        <div class="produc~t-preview">
                             <img src="img/<?php echo $linkImage['image_name'] ?>" alt="">
                         </div>
 
