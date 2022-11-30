@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th10 24, 2022 lúc 07:02 AM
+-- Thời gian đã tạo: Th10 26, 2022 lúc 11:41 AM
 -- Phiên bản máy phục vụ: 5.7.31
 -- Phiên bản PHP: 7.3.21
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `nhom4`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `login`
+--
+
+DROP TABLE IF EXISTS `login`;
+CREATE TABLE IF NOT EXISTS `login` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) CHARACTER SET armscii8 NOT NULL,
+  `password` text CHARACTER SET armscii8 NOT NULL,
+  `fullname` varchar(100) CHARACTER SET armscii8 NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `login`
+--
+
+INSERT INTO `login` (`id`, `username`, `password`, `fullname`) VALUES
+(1, 'quocviet123', '123456789', 'Quoc Viet'),
+(2, 'vanlam123', '123456789', 'Van Lam');
 
 -- --------------------------------------------------------
 

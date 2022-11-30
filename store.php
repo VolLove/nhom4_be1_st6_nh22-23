@@ -101,7 +101,6 @@
                     <div class="aside">
                         <h3 class="aside-title">Categories</h3>
                         <div class="checkbox-filter">
-
                             <div class="input-checkbox">
                                 <input type="checkbox" id="category-1">
                                 <label for="category-1">
@@ -115,7 +114,7 @@
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
-                    <div class="aside">
+                    <!-- <div class="aside">
                         <h3 class="aside-title">Price</h3>
                         <div class="price-filter">
                             <div id="price-slider"></div>
@@ -131,11 +130,11 @@
                                 <span class="qty-down">-</span>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
-                    <div class="aside">
+                    <!-- <div class="aside">
                         <h3 class="aside-title">Brand</h3>
                         <div class="checkbox-filter">
                             <div class="input-checkbox">
@@ -147,11 +146,11 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
-                    <div class="aside">
+                    <!-- <div class="aside">
                         <h3 class="aside-title">Top selling</h3>
 
                         <div class="product-widget">
@@ -164,7 +163,7 @@
                                 <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- /aside Widget -->
                 </div>
                 <!-- /ASIDE -->
@@ -196,31 +195,32 @@
                     </div> -->
                     <!-- /store top filter -->
 
+
+                    <!-- page value -->
+                    <?php
+                    $perPage = 6;
+                    $page = 0;
+                    if (!isset($_GET['page'])) {
+
+                        $page = 1;
+                    } else {
+
+                        $page = $_GET['page'];
+                    }
+                    ?>
+                    <!-- page value -->
                     <!-- store products -->
+                    <?php
+                    if (isset($_GET['id'])) : ?>
                     <div class="row">
-                        <!-- page value -->
+
                         <?php
-                        $perPage = 6;
-                        $page = 0;
-                        if (!isset($_GET['page'])) {
-
-                            $page = 1;
-                        } else {
-
-                            $page = $_GET['page'];
-                        }
-                        ?>
-                        <!-- page value -->
-
-                        <!-- produce search by type_id -->
-                        <?php
-                        if (isset($_GET['id'])) :
                             $type_id = $_GET['id'];
                             $getByTypeId = $product->getProductByType($type_id);
                             $total = count($getByTypeId);
                             $countPage = ceil($total / $perPage);
                             foreach ($getByTypeId as $value) :
-                        ?>
+                            ?>
                         <!-- product -->
                         <div class="col-md-4 col-xs-6">
                             <div class="product">
@@ -228,56 +228,76 @@
                                     <img src="./img/<?php echo $value['image'] ?>" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <h3 class="product-name"><a
-                                            href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
+                                    <h3 class="product-name">
+                                        <a href='product.php?id=<?php echo $value['id'] ?>'>
+                                            <?php echo $value['name'] ?>
                                         </a>
                                     </h3>
-                                    <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
+                                    <h4 class="product-price">
+                                        <?php echo number_format($value['price']) ?> VND
+                                    </h4>
                                     <div class="product-btns">
                                         <?php
                                                 if (isset($_SESSION['wish'][$value['id']])) :
                                                 ?>
-                                        <button class="remove-to-wishlist"><a
-                                                href="cart.php?remove_id=<?php echo $value['id']; ?>"><i
-                                                    class="fa fa-heart"></i><span class="tooltipp">remove from
-                                                    wishlist</span></a></button>
+                                        <button class="remove-to-wishlist">
+                                            <a href="cart.php?remove_id=<?php echo $value['id']; ?>">
+                                                <i class="fa fa-heart"></i>
+                                                <span class="tooltipp">remove from wishlist</span>
+                                            </a>
+                                        </button>
                                         <?php else : ?>
-                                        <button class="add-to-wishlist"><a
-                                                href="cart.php?add_id=<?php echo $value['id']; ?>"> <i
-                                                    class="fa fa-heart-o"></i><span class="tooltipp">add to
-                                                    wishlist</span>
-                                            </a></button>
+                                        <button class="add-to-wishlist">
+                                            <a href="cart.php?add_id=<?php echo $value['id']; ?>">
+                                                <i class="fa fa-heart-o"></i>
+                                                <span class="tooltipp">add to wishlist</span>
+                                            </a>
+                                        </button>
                                         <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- /product -->
-
                         <?php
                             endforeach; ?>
-                        <!-- store bottom filter -->
-                        <div class="store-filter clearfix">
-                            <!-- <span class="store-qty">Showing 20-100 products</span> -->
-                            <ul class="store-pagination">
-                                <?php for ($i = 1; $i <= $countPage; $i++) :
-                                        if ($i == $page) :
-                                    ?>
-                                <li class="active"><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
-                                <?php else : ?>
-                                <li><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                    </div>
 
-                                <?php endif;
-                                    endfor; ?>
-                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- /store bottom filter -->
-                        <!-- produce search by type_id -->
+                    <!-- store bottom filter -->
+                    <div class="store-filter clearfix">
+                        <ul class="store-pagination">
+                            <?php
+                                for ($i = 1; $i <= $countPage; $i++) :
+                                    if ($i == $page) :
+                                ?>
+                            <li class="active">
+                                <a href="store.php?page=<?php echo $i ?>">
+                                    <?php echo $i ?>
+                                </a>
+                            </li>
+                            <?php else : ?>
+                            <li>
+                                <a href="store.php?page=<?php echo $i ?>">
+                                    <?php echo $i ?>
+                                </a>
+                            </li>
 
-                        <!-- product seach -->
-                        <?php elseif (isset($_GET['searchtxt'])) :
+                            <?php endif;
+                                endfor; ?>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /store bottom filter -->
 
+                    <!-- product seach -->
+                    <?php elseif (isset($_GET['searchtxt'])) : ?>
+                    <!-- store products -->
+                    <div class="row">
+                        <?php
                             $type_id;
                             $keyword = $_GET['searchtxt'];
                             $getbysearch = $product->search($keyword);
@@ -295,54 +315,78 @@
                                     <img src="./img/<?php echo $value['image'] ?>" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <h3 class="product-name"><a
-                                            href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
+                                    <h3 class="product-name">
+                                        <a href='product.php?id=<?php echo $value['id'] ?>'>
+                                            <?php echo $value['name'] ?>
                                         </a>
                                     </h3>
-                                    <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
+                                    <h4 class="product-price">
+                                        <?php echo number_format($value['price']) ?> VND
+                                    </h4>
                                     <div class="product-btns">
                                         <?php
                                                         if (isset($_SESSION['wish'][$value['id']])) :
                                                         ?>
-                                        <button class="remove-to-wishlist"><a
-                                                href="cart.php?remove_id=<?php echo $value['id'] ?>"><i
-                                                    class="fa fa-heart"></i><span class="tooltipp">remove from
-                                                    wishlist</span></a></button>
+                                        <button class="remove-to-wishlist">
+                                            <a href="cart.php?remove_id=<?php echo $value['id'] ?>">
+                                                <i class="fa fa-heart"></i>
+                                                <span class="tooltipp">remove from wishlist</span>
+                                            </a>
+                                        </button>
                                         <?php else : ?>
-                                        <button class="add-to-wishlist"><a
-                                                href="cart.php?add_id=<?php echo $value['id'] ?>"> <i
-                                                    class="fa fa-heart-o"></i><span class="tooltipp">add to
-                                                    wishlist</span>
-                                            </a></button>
-
+                                        <button class="add-to-wishlist">
+                                            <a href="cart.php?add_id=<?php echo $value['id'] ?>">
+                                                <i class="fa fa-heart-o"></i>
+                                                <span class="tooltipp">add to wishlist</span>
+                                            </a>
+                                        </button>
                                         <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <!-- /product -->
                         <?php endforeach; ?>
-                        <!-- store bottom filter -->
-                        <div class="store-filter clearfix">
-                            <span class="store-qty">Showing 20-100 products</span>
-                            <ul class="store-pagination">
-                                <?php for ($i = 1; $i <= $countPage; $i++) :
-                                                if ($i == $page) :
-                                            ?>
-                                <li class="active"><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
-                                <?php else : ?>
-                                <li><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                        <!-- store products -->
+                    </div>
+                    <!-- store bottom filter -->
+                    <div class="store-filter clearfix">
 
-                                <?php endif;
-                                            endfor; ?>
-                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- /store bottom filter -->
-                        <!-- product seach -->
+                        <ul class="store-pagination">
+                            <?php for ($i = 1; $i <= $countPage; $i++) :
+                                        if ($i == $page) :
+                                ?>
+                            <li class="active">
+                                <a href="store.php?page=<?php echo $i ?>">
+                                    <?php echo $i ?>
+                                </a>
+                            </li>
+                            <?php else : ?>
+                            <li>
+                                <a href="store.php?page=<?php echo $i ?>">
+                                    <?php echo $i ?>
+                                </a>
+                            </li>
+
+                            <?php endif;
+                                    endfor; ?>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /store bottom filter -->
+                    <!-- product seach -->
 
 
-                        <?php else :
+                    <?php else :
+                    ?>
+                    <!-- store products -->
+                    <div class="row">
+                        <?php
                                     foreach ($getbysearch as $value) :
                                         if ($value['type_id'] == $type_id) : ?>
                         <!-- product -->
@@ -352,26 +396,31 @@
                                     <img src="./img/<?php echo $value['image'] ?>" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <h3 class="product-name"><a
-                                            href='product.php?id=<?php echo $value['id'] ?>'><?php echo $value['name'] ?>
+                                    <h3 class="product-name">
+                                        <a href='product.php?id=<?php echo $value['id'] ?>'>
+                                            <?php echo $value['name'] ?>
                                         </a>
                                     </h3>
-                                    <h4 class="product-price"> <?php echo number_format($value['price']) ?> VND</h4>
+                                    <h4 class="product-price">
+                                        <?php echo number_format($value['price']) ?> VND
+                                    </h4>
                                     <div class="product-btns">
                                         <?php
-                                                            if (isset($_SESSION['wish'][$value['id']])) :
-                                                            ?>
+                                                    if (isset($_SESSION['wish'][$value['id']])) :
+                                                    ?>
                                         <button class="remove-to-wishlist"><a
-                                                href="cart.php?remove_id=<?php echo $value['id'] ?>"><i
-                                                    class="fa fa-heart"></i><span class="tooltipp">remove from
-                                                    wishlist</span></a></button>
+                                                href="cart.php?remove_id=<?php echo $value['id'] ?>">
+                                                <i class="fa fa-heart"></i>
+                                                <span class="tooltipp">remove from wishlist</span>
+                                            </a>
+                                        </button>
                                         <?php else : ?>
-                                        <button class="add-to-wishlist"><a
-                                                href="cart.php?add_id=<?php echo $value['id'] ?>"> <i
-                                                    class="fa fa-heart-o"></i><span class="tooltipp">add to
-                                                    wishlist</span>
-                                            </a></button>
-
+                                        <button class="add-to-wishlist">
+                                            <a href="cart.php?add_id=<?php echo $value['id'] ?>">
+                                                <i class="fa fa-heart-o"></i>
+                                                <span class="tooltipp">add to wishlist</span>
+                                            </a>
+                                        </button>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -381,30 +430,49 @@
                         <?php
                                         endif;
                                     endforeach;
-                                    ?>
-                        <!-- store bottom filter -->
-                        <div class="store-filter clearfix">
-                            <span class="store-qty">Showing 20-100 products</span>
-                            <ul class="store-pagination">
-                                <?php for ($i = 1; $i <= $countPage; $i++) :
-                                                if ($i == $page) :
-                                            ?>
-                                <li class="active"><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
-                                <?php else : ?>
-                                <li><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                            ?>
+                    </div>
+                    <!-- store products -->
 
-                                <?php endif;
-                                            endfor;
-                                            ?>
-                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- /store bottom filter -->
-                        <?php
+                    <!-- store bottom filter -->
+                    <div class="store-filter clearfix">
+
+                        <ul class="store-pagination">
+                            <?php for ($i = 1; $i <= $countPage; $i++) :
+                                        if ($i == $page) :
+                                ?>
+                            <li class="active">
+                                <a href="store.php?page=<?php echo $i ?>">
+                                    <?php echo $i ?>
+                                </a>
+                            </li>
+                            <?php else : ?>
+                            <li>
+                                <a href="store.php?page=<?php echo $i ?>">
+                                    <?php echo $i ?>
+                                </a>
+                            </li>
+
+                            <?php endif;
+                                    endfor;
+                                ?>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-angle-right">
+                                    </i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /store bottom filter -->
+                    <?php
                                 endif;
                             endif;
+                        else : ?>
 
-                        else :
+                    <!-- store products -->
+                    <div class="row">
+                        <?php
                             $getAllProducts = $product->getAllProducts();
                             $total = count($product->getAllProducts());
                             $perPage = 6;
@@ -440,8 +508,8 @@
 
                                     <div class="product-btns">
                                         <?php
-                                                if (isset($_SESSION['wish'][$value['id']])) :
-                                                ?>
+                                        if (isset($_SESSION['wish'][$value['id']])) :
+                                        ?>
                                         <button class="remove-to-wishlist"><a
                                                 href="cart.php?remove_id=<?php echo $value['id'] ?>"><i
                                                     class="fa fa-heart"></i><span class="tooltipp">remove from
@@ -454,37 +522,38 @@
                                             </a></button>
 
                                         <?php
-                                                endif; ?>
+                                        endif; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- /product -->
-
                         <?php
                             endforeach; ?>
-                        <!-- store bottom filter -->
-                        <div class="store-filter clearfix">
-                            <ul class="store-pagination">
-                                <?php
-                                    for ($i = 1; $i <= $countPage; $i++) :
-                                        if ($i == $page) :
-                                    ?>
-                                <li class="active"><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
-                                <?php else : ?>
-                                <li><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                    </div>
 
-                                <?php
-                                        endif;
-                                    endfor; ?>
-                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- /store bottom filter -->
-                        <?php
+                    <!-- store bottom filter -->
+                    <div class="store-filter clearfix">
+                        <ul class="store-pagination">
+                            <?php
+                            for ($i = 1; $i <= $countPage; $i++) :
+                                if ($i == $page) :
+                        ?>
+                            <li class="active"><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+                            <?php else : ?>
+                            <li><a href="store.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+
+                            <?php
+                                endif;
+                            endfor; ?>
+                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>
+                    <!-- /store bottom filter -->
+                    <?php
                         endif; ?>
 
-                    </div>
+
                     <!-- /store products -->
 
 
