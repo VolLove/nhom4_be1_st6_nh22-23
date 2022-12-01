@@ -11,12 +11,10 @@
     <!--Made with love by Mutiullah Samim -->
 
     <!--Bootsrap 4 CDN-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!--Fontawesome CDN-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="styles.css">
@@ -24,6 +22,20 @@
 
 <body>
     <div class="container">
+        <?php
+        if (isset($_COOKIE["error"])) {
+        ?>
+            <div class="alert alert-danger">
+                <?php echo $_COOKIE["error"]; ?>
+            </div>
+        <?php } ?>
+        <?php
+        if (isset($_COOKIE["success"])) {
+        ?>
+            <div class="alert alert-success">
+                <?php echo $_COOKIE["success"]; ?>
+            </div>
+        <?php } ?>
         <div class="d-flex justify-content-center h-100">
             <div class="card">
                 <div class="card-header">
@@ -35,18 +47,20 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="get">
+                    <form action="handle.php" method="post">
+
                         <div class="input-group form-group">
+                            <input type="hidden" name="typehandle" value="login">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                             </div>
-                            <input name="username" type="text" class="form-control" placeholder="username">
+                            <input required name="username" type="text" class="form-control" placeholder="username">
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <input name="password" type="password" class="form-control" placeholder="password">
+                            <input required name="password" type="password" class="form-control" placeholder="password">
                         </div>
                         <div class="row align-items-center remember">
                             <input name="check" type="checkbox">Remember Me
@@ -58,10 +72,10 @@
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">
-                        Don't have an account?<a href="#">Sign Up</a>
+                        Don't have an account?<a href="register.php">Sign Up</a>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <a href="#">Forgot your password?</a>
+                        <a href="chanpassword.php">Forgot your password?</a>
                     </div>
                 </div>
             </div>
