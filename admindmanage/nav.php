@@ -5,6 +5,20 @@
 
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <?php
+            if (isset($_COOKIE["error"])) {
+            ?>
+            <div class="alert alert-danger">
+                <?php echo $_COOKIE["error"]; ?>
+            </div>
+            <?php } ?>
+            <?php
+            if (isset($_COOKIE["success"])) {
+            ?>
+            <div class="alert alert-success">
+                <?php echo $_COOKIE["success"]; ?>
+            </div>
+            <?php } ?>
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">

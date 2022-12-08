@@ -62,26 +62,25 @@ include 'header.php';
 
                                             foreach ($getAllProduct as $value) :
                                             ?>
-                                            <tr>
-                                                <td>
-                                                    <img style="width: 100px;"
-                                                        src="./img/<?php echo $value['image'] ?>">
-                                                </td>
-                                                <td>
-                                                    <?php echo $value['name'] ?>
-                                                </td>
-                                                <td>
-                                                    <?php
+                                                <tr>
+                                                    <td>
+                                                        <img style="width: 100px;" src="../img/<?php echo $value['image'] ?>">
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $value['name'] ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php
                                                         foreach ($getAllType as $type) {
                                                             if ($type['type_id'] == $value['type_id']) {
                                                                 echo $type['type_name'];
                                                             }
                                                         }
                                                         ?>
-                                                </td>
-                                                <td>
+                                                    </td>
+                                                    <td>
 
-                                                    <?php
+                                                        <?php
                                                         foreach ($getAllManufaturer as $manu) {
                                                             if ($manu['manu_id'] == $value['manu_id']) {
                                                                 echo $manu['manu_name'];
@@ -89,23 +88,21 @@ include 'header.php';
                                                         }
                                                         ?>
 
-                                                </td>
-                                                <td>
-                                                    <?php echo number_format($value['price']); ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $value['sales']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $value['created_at']; ?>
-                                                </td>
-                                                <td>
-                                                    <a href="product-edit.php?id=<?php echo $value['id'] ?>"
-                                                        type="button" class="btn btn-block btn-default btn-xs">Edit</a>
-                                                    <a href="handle.php?productdelete=<?php echo $value['id'] ?>"
-                                                        type="button" class="btn btn-block btn-danger btn-xs">Delete</a>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo number_format($value['price']); ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $value['sales']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $value['created_at']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <a href="product-edit.php?id=<?php echo $value['id'] ?>" type="button" class="btn btn-block btn-default btn-xs">Edit</a>
+                                                        <a href="handle.php?productdelete=<?php echo $value['id'] ?>" type="button" class="btn btn-block btn-danger btn-xs">Delete</a>
+                                                    </td>
+                                                </tr>
 
                                             <?php
                                             endforeach;
@@ -142,17 +139,17 @@ include 'header.php';
     <?php include 'jquerylink.php'; ?>
 
     <script>
-    $(function() {
-        $("#example").DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": false,
-            "info": false,
-            "autoWidth": false,
-            "responsive": false,
-        }).buttons().container().appendTo('#example_wrapper .col-md-6:eq(0)');
-    });
+        $(function() {
+            $("#example").DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": false,
+                "info": false,
+                "autoWidth": false,
+                "responsive": false,
+            }).buttons().container().appendTo('#example_wrapper .col-md-6:eq(0)');
+        });
     </script>
 </body>
 

@@ -40,7 +40,7 @@ include 'header.php';
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <a href="type-add" type="button" class="btn btn-primary btn-lg">Add new</a>
+                                    <a href="manufacturer-add" type="button" class="btn btn-primary btn-lg">Add new</a>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -49,6 +49,7 @@ include 'header.php';
                                             <tr>
                                                 <th>Logo</th>
                                                 <th>Manufacturer</th>
+                                                <th>Product</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -57,16 +58,15 @@ include 'header.php';
                                             foreach ($getAllManufaturer as $value) :
                                             ?>
                                             <tr>
-                                                <td style="width: 100px;">
-                                                    <img style="width: 100%;"
-                                                        src="./img/<?php echo $value['manu_name'] . '.png' ?>">
+                                                <td style="width: 100px; height: 100px;">
+                                                    <img style="width: 100%;" src="../img/<?php echo $value['logo'] ?>">
                                                 </td>
                                                 <td>
                                                     <?php echo $value['manu_name']; ?>
                                                 </td>
                                                 <td style="width: 100px;">
                                                     <?php $countProduct = 0;
-                                                        $getAllProductByType = $product->getProductByType($value['manu_id']);
+                                                        $getAllProductByType = $product->getProductByManu($value['manu_id']);
                                                         foreach ($getAllProductByType as $item) {
                                                             $countProduct++;
                                                         }
@@ -74,9 +74,9 @@ include 'header.php';
                                                         ?>
                                                 </td>
                                                 <td style="width: 100px;">
-                                                    <a href="type-edit.php?id=<?php echo $value['manu_id'] ?>"
+                                                    <a href="manufacturer-edit.php?id=<?php echo $value['manu_id'] ?>"
                                                         type="button" class="btn btn-block btn-default btn-xs">Edit</a>
-                                                    <a href="handle.php?typedelete=<?php echo $value['manu_id'] ?>"
+                                                    <a href="handle.php?manudelete=<?php echo $value['manu_id'] ?>"
                                                         type="button" class="btn btn-block btn-danger btn-xs">Delete</a>
                                                 </td>
                                             </tr>

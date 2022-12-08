@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <?php
-
 include 'header.php';
 ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-
     <div class="wrapper">
-
         <?php include 'nav.php';
-    include 'sidebar.php';
-    ?>
-
+        include 'sidebar.php';
+        ?>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -56,11 +51,12 @@ include 'header.php';
                                         </thead>
                                         <tbody>
                                             <?php
-                      foreach ($getAllType as $value) :
-                      ?>
+                                            foreach ($getAllType as $value) :
+                                            ?>
                                             <tr>
                                                 <td style="width: 100px;">
-                                                    <img style="width: 100%;" src="./img/<?php echo $value['image'] ?>">
+                                                    <img style="width: 100%;"
+                                                        src="../img/<?php echo $value['image'] ?>">
                                                 </td>
                                                 <td>
                                                     <?php echo $value['type_id'] ?>
@@ -70,12 +66,12 @@ include 'header.php';
                                                 </td>
                                                 <td style="width: 100px;">
                                                     <?php $countProduct = 0;
-                            $getAllProductByType = $product->getProductByType($value['type_id']);
-                            foreach ($getAllProductByType as $item) {
-                              $countProduct++;
-                            }
-                            echo $countProduct;
-                            ?>
+                                                        $getAllProductByType = $product->getProductByType($value['type_id']);
+                                                        foreach ($getAllProductByType as $item) {
+                                                            $countProduct++;
+                                                        }
+                                                        echo $countProduct;
+                                                        ?>
                                                 </td>
                                                 <td style="width: 100px;">
                                                     <a href="type-edit.php?id=<?php echo $value['type_id'] ?>"
@@ -85,8 +81,8 @@ include 'header.php';
                                                 </td>
                                             </tr>
                                             <?php
-                      endforeach;
-                      ?>
+                                            endforeach;
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>

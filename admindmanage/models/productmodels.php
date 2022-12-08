@@ -36,6 +36,17 @@ class Product extends Db
         return $items; //return an array
     }
 
+    //get product by manufacturer
+    public function getProductByManu($manu_id)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM products WHERE `manu_id` = ?");
+        $sql->bind_param("i", $manu_id);
+        $sql->execute(); //return an object
+
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items; //return an array
+    }
 
     //search
     public function search($keyword)
@@ -231,5 +242,101 @@ class Product extends Db
         $items = array();
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items;
+    }
+
+    //add new product
+    public function addProduct($name, $manu_id, $type_id, $price, $image, $description, $created_at, $details)
+    {
+
+        $sql = self::$connection->prepare('INSERT INTO products( `name`, `manu_id`, `type_id`, `price`, `image`, `description`, `created_at`, `details`) VALUES (?,?,?,?,?,?,?,?)');
+        $sql->bind_param('siiissss', $name, $manu_id, $type_id, $price, $image, $description, $created_at, $details);
+        return $sql->execute();
+    }
+
+    //add new type
+    public function addType($type_name, $image)
+    {
+
+        $sql = self::$connection->prepare('INSERT INTO protypes(`type_name`, `image`) VALUES (?,?)');
+        $sql->bind_param('ss', $type_name, $image);
+        return $sql->execute();
+    }
+    //add new manu
+    public function addManufactures($manu_name, $logo)
+    {
+
+        $sql = self::$connection->prepare('INSERT INTO manufactures(`manu_name`, `logo`) VALUES (?,?)');
+        $sql->bind_param('ss', $manu_name, $logo);
+        return $sql->execute();
+    }
+
+    //remove product
+    public function removeProduct($id)
+    {
+
+        $sql = self::$connection->prepare('DELETE FROM `products` WHERE id=?');
+        $sql->bind_param('i', $id);
+        return $sql->execute();
+    }
+
+    //remove type
+    public function removeType($id)
+    {
+        $sql = self::$connection->prepare('DELETE FROM `protypes` WHERE type_id=?');
+        $sql->bind_param('i', $id);
+        return $sql->execute();
+    }
+
+    //remove manu
+    public function removeManufactures($id)
+    {
+        $sql = self::$connection->prepare('DELETE FROM `manufactures` WHERE manu_id=?');
+        $sql->bind_param('i', $id);
+        return $sql->execute();
+    }
+
+    //update product
+    public function updateProduct($id, $name, $manu_id, $type_id, $price, $image, $description, $details)
+    {
+
+        $sql = self::$connection->prepare('UPDATE `products` SET `name`=?,`manu_id`=?,`type_id`=?,`price`=?,`image`=?,`description`=?,`details`=? WHERE `id`=?');
+        $sql->bind_param('siiisssi', $name, $manu_id, $type_id, $price, $image, $description, $details, $id);
+        return $sql->execute();
+    }
+    //update manu
+    public function updateManufactures($manu_id, $manu_name, $logo)
+    {
+
+        $sql = self::$connection->prepare('UPDATE `manufactures` SET `manu_name`=?,`logo`= ? WHERE `manu_id`= ?');
+        $sql->bind_param('ssi', $manu_name, $logo, $manu_id);
+        return $sql->execute();
+    }
+
+    //update type
+    public function updateType($type_id, $type_name, $image)
+    {
+
+        $sql = self::$connection->prepare('UPDATE `protypes` SET `type_name`=?,`image`=? WHERE `type_id`= ?');
+        $sql->bind_param('ssi', $type_name, $image, $type_id);
+        return $sql->execute();
+    }
+    public function getManuByID($manu_id)
+    {
+        $sql = self::$connection->prepare('SELECT * FROM `manufactures` WHERE `manu_id`= ?');
+        $sql->bind_param('i', $manu_id);
+        $sql->execute(); //return an object
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items; //return an array
+    }
+
+    public function getTypeByID($type_id)
+    {
+        $sql = self::$connection->prepare('SELECT * FROM `protypes` WHERE `type_id`= ?');
+        $sql->bind_param('i', $type_id);
+        $sql->execute(); //return an object
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items; //return an array
     }
 }
