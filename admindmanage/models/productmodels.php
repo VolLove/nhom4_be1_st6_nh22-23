@@ -165,7 +165,7 @@ class Product extends Db
     //Topselling PC
     public function gettopsellingPC()
     {
-        $sql = self::$connection->prepare("SELECT * FROM products WHERE `type_id` = 4 AND `feature` = 1");
+        $sql = self::$connection->prepare("SELECT * FROM `products` WHERE `type_id` = 4 AND `feature` = 1");
         $sql->execute(); //return an object
 
         $items = array();
@@ -175,7 +175,7 @@ class Product extends Db
     //Topselling Table
     public function gettopsellingTablets()
     {
-        $sql = self::$connection->prepare("SELECT * FROM products WHERE `type_id` = 5 AND `feature` = 1");
+        $sql = self::$connection->prepare("SELECT * FROM `products` WHERE `type_id` = 5 AND `feature` = 1");
         $sql->execute(); //return an object
 
         $items = array();
@@ -186,7 +186,7 @@ class Product extends Db
     // get all product
     public function getAlltype()
     {
-        $sql = self::$connection->prepare("SELECT * FROM protypes");
+        $sql = self::$connection->prepare("SELECT * FROM `protypes`");
         $sql->execute();
         $items = array();
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -195,7 +195,7 @@ class Product extends Db
 
     public function getTypeName($id)
     {
-        $sql = self::$connection->prepare("SELECT * FROM protypes where `type_id` = ?");
+        $sql = self::$connection->prepare("SELECT * FROM `protypes` where `type_id` = ?");
         $sql->bind_param("i", $id);
         $sql->execute();
         $items = array();
@@ -203,15 +203,7 @@ class Product extends Db
         return $items; //return an array
     }
 
-    //get smartphone   
-    public function chance()
-    {
-        $sql = self::$connection->prepare("SELECT * FROM `products`,`protypes` WHERE `products`.`type_id` = `protypes`.`type_id`AND `protypes`.`type_id` = 1");
-        $sql->execute();
-        $items = array();
-        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
-        return $items;
-    }
+
     function getPage($page, $perPage)
     {
         $firstLink = ($page - 1) * $perPage;
@@ -223,11 +215,21 @@ class Product extends Db
     }
     public function getImageById($id)
     {
-        $sql = self::$connection->prepare("SELECT * FROM uploadimages where `id_product` = ?");
+        $sql = self::$connection->prepare("SELECT * FROM `uploadimages` where `id_product` = ?");
         $sql->bind_param("i", $id);
         $sql->execute();
         $items = array();
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items; //return an array
+    }
+
+    // get all Manufacturer
+    public function getAllManufacturer()
+    {
+        $sql = self::$connection->prepare("SELECT * FROM manufactures");
+        $sql->execute();
+        $items = array();
+        $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $items;
     }
 }

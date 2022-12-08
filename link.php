@@ -1,7 +1,6 @@
 <?php session_start();
 include "models/db.php";
 include "config.php";
-
 include "models/productmodels.php";
 $gettype = new Product;
 $product = new product;
