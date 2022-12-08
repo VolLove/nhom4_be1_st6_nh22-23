@@ -101,14 +101,59 @@
                     <div class="aside">
                         <h3 class="aside-title">Categories</h3>
                         <div class="checkbox-filter">
+                            <?php
+                            $getallType = $gettype->getAlltype();
+                            if (isset($_GET['id'])) {
+                                $id = $_GET['id'];
+                                foreach ($getallType as $value) :
+                                    if ($value['type_id'] == $id) : ?>
+                            <!-- active -->
                             <div class="input-checkbox">
-                                <input type="checkbox" id="category-1">
-                                <label for="category-1">
-                                    <span></span>
-                                    Laptops
-                                    <small>(120)</small>
-                                </label>
+                                <a href="store.php?id=<?php echo $value['type_id']; ?>">
+                                    <input type="checkbox" checked>
+                                    <label for="category-<?php echo $value['type_id'] ?> ">
+                                        <span></span>
+                                        <?php echo $value['type_name'] ?>
+                                    </label>
+                                </a>
+
                             </div>
+                            <?php else : ?>
+                            <!-- no active  -->
+                            <div class="input-checkbox">
+                                <a href="store.php?id=<?php echo $value['type_id']; ?>">
+                                    <input type="checkbox">
+                                    <label for="category-<?php echo $value['type_id'] ?> ">
+                                        <span></span>
+                                        <?php echo $value['type_name'] ?>
+                                    </label>
+                                </a>
+
+                            </div>
+
+                            <?php
+                                    endif;
+                                endforeach;
+                            } else {
+                                foreach ($getallType as $value) : ?>
+                            <!-- no select -->
+                            <div class="input-checkbox">
+                                <a href="store.php?id=<?php echo $value['type_id']; ?>">
+                                    <input type="checkbox">
+                                    <label for="category-<?php echo $value['type_id'] ?> ">
+                                        <span></span>
+                                        <?php echo $value['type_name'] ?>
+                                    </label>
+                                </a>
+
+                            </div>
+                            <?php
+                                endforeach;
+                            }
+
+                            ?>
+
+
                         </div>
                     </div>
                     <!-- /aside Widget -->
@@ -134,7 +179,7 @@
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
-                    <!-- <div class="aside">
+                    <div class="aside">
                         <h3 class="aside-title">Brand</h3>
                         <div class="checkbox-filter">
                             <div class="input-checkbox">
@@ -146,7 +191,7 @@
                                 </label>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->

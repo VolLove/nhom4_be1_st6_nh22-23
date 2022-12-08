@@ -74,13 +74,7 @@
                             <h3 class="title">Billing address</h3>
                         </div>
                         <div class="form-group">
-                            <input class="input" type="text" name="first-name" placeholder="First Name">
-                        </div>
-                        <div class="form-group">
-                            <input class="input" type="text" name="last-name" placeholder="Last Name">
-                        </div>
-                        <div class="form-group">
-                            <input class="input" type="email" name="email" placeholder="Email">
+                            <input class="input" type="text" name="name" placeholder="Name">
                         </div>
                         <div class="form-group">
                             <input class="input" type="text" name="address" placeholder="Address">
