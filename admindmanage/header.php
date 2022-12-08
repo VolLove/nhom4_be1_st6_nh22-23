@@ -4,6 +4,9 @@ include "models/db.php";
 include "config.php";
 include "models/productmodels.php";
 $product = new Product();
+$getAllProduct = $product->getAllProducts();
+$getAllType = $product->getAlltype();
+$getAllManufaturer = $product->getAllManufacturer();
 ?>
 
 <head>

@@ -46,38 +46,26 @@
 
                 </li>
                 <li class="nav-item">
-                    <a href="product-add" class="nav-link">
+                    <a href="product-table.php" class="nav-link">
                         <i class="fas fa-briefcase"></i>
                         <p>
                             Product
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="product-table" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Table</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="product-add" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>New</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="product-edit" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Edit</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="product-edit" class="nav-link">
+                    <a href="type-table.php" class="nav-link">
                         <i class="fas fa-briefcase"></i>
                         <p>
-                            Product edit
+                            Typle
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="manufacturer-table" class="nav-link">
+                        <i class="fas fa-briefcase"></i>
+                        <p>
+                            Manufacturer
                         </p>
                     </a>
                 </li>

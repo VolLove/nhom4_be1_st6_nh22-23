@@ -40,84 +40,54 @@ include 'header.php';
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <a href="product-add" type="button" class="btn btn-primary btn-lg">Add new</a>
+                                    <a href="type-add" type="button" class="btn btn-primary btn-lg">Add new</a>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <table id="example" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th></th>
-                                                <th>Name</th>
-                                                <th>Type</th>
+                                                <th>Logo</th>
                                                 <th>Manufacturer</th>
-                                                <th>Price (VND)</th>
-                                                <th>Total sales</th>
-                                                <th>Created at</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-
-                                            foreach ($getAllProduct as $value) :
+                                            foreach ($getAllManufaturer as $value) :
                                             ?>
                                             <tr>
-                                                <td>
-                                                    <img style="width: 100px;"
-                                                        src="./img/<?php echo $value['image'] ?>">
+                                                <td style="width: 100px;">
+                                                    <img style="width: 100%;"
+                                                        src="./img/<?php echo $value['manu_name'] . '.png' ?>">
                                                 </td>
                                                 <td>
-                                                    <?php echo $value['name'] ?>
+                                                    <?php echo $value['manu_name']; ?>
                                                 </td>
-                                                <td>
-                                                    <?php
-                                                        foreach ($getAllType as $type) {
-                                                            if ($type['type_id'] == $value['type_id']) {
-                                                                echo $type['type_name'];
-                                                            }
+                                                <td style="width: 100px;">
+                                                    <?php $countProduct = 0;
+                                                        $getAllProductByType = $product->getProductByType($value['manu_id']);
+                                                        foreach ($getAllProductByType as $item) {
+                                                            $countProduct++;
                                                         }
+                                                        echo $countProduct;
                                                         ?>
                                                 </td>
-                                                <td>
-
-                                                    <?php
-                                                        foreach ($getAllManufaturer as $manu) {
-                                                            if ($manu['manu_id'] == $value['manu_id']) {
-                                                                echo $manu['manu_name'];
-                                                            }
-                                                        }
-                                                        ?>
-
-                                                </td>
-                                                <td>
-                                                    <?php echo number_format($value['price']); ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $value['sales']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $value['created_at']; ?>
-                                                </td>
-                                                <td>
-                                                    <a href="product-edit.php?id=<?php echo $value['id'] ?>"
+                                                <td style="width: 100px;">
+                                                    <a href="type-edit.php?id=<?php echo $value['manu_id'] ?>"
                                                         type="button" class="btn btn-block btn-default btn-xs">Edit</a>
-                                                    <a href="handle.php?productdelete=<?php echo $value['id'] ?>"
+                                                    <a href="handle.php?typedelete=<?php echo $value['manu_id'] ?>"
                                                         type="button" class="btn btn-block btn-danger btn-xs">Delete</a>
                                                 </td>
                                             </tr>
-
                                             <?php
                                             endforeach;
                                             ?>
-
                                         </tbody>
                                     </table>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
-                            <!-- /.card -->
-
                             <!-- /.card -->
                         </div>
                         <!-- /.col -->
@@ -143,7 +113,8 @@ include 'header.php';
 
     <script>
     $(function() {
-        $("#example").DataTable({
+
+        $('#example').DataTable({
             "paging": true,
             "lengthChange": false,
             "searching": false,
@@ -151,7 +122,7 @@ include 'header.php';
             "info": false,
             "autoWidth": false,
             "responsive": false,
-        }).buttons().container().appendTo('#example_wrapper .col-md-6:eq(0)');
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
     </script>
 </body>
