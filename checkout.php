@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php include "link.php"; ?>
-
-</head>
+<?php
+include 'head.php';
+?>
 
 <body>
-    <?php include "head.php"; ?>
+    <?php include "header.php"; ?>
     <!-- NAVIGATION -->
     <nav id="navigation">
         <!-- container -->
@@ -26,8 +19,8 @@
                     $gettype = new Product;
                     $getallType = $gettype->getAlltype();
                     foreach ($getallType as $value) : ?>
-                    <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
-                    </li>
+                        <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                        </li>
                     <?php
                     endforeach;
                     ?>
@@ -101,8 +94,7 @@
                                 <div class="caption">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                         incididunt.</p>
-                                    <input class="input" type="password" name="password"
-                                        placeholder="Enter Your Password">
+                                    <input class="input" type="password" name="password" placeholder="Enter Your Password">
                                 </div>
                             </div>
                         </div>
@@ -176,10 +168,10 @@
                                     foreach ($getAllProduct as $valuePro) :
                                         if ($key == $valuePro['id']) :
                             ?>
-                            <div class="order-col">
-                                <div><?php echo $value ?>x <?php echo $valuePro['name'] ?></div>
-                                <div><?php echo number_format($valuePro['price'] * $value) ?> VND</div>
-                            </div>
+                                            <div class="order-col">
+                                                <div><?php echo $value ?>x <?php echo $valuePro['name'] ?></div>
+                                                <div><?php echo number_format($valuePro['price'] * $value) ?> VND</div>
+                                            </div>
                             <?php
                                             $total = $total + $valuePro['price'] * $value;
                                         endif;
@@ -331,9 +323,8 @@
                         <span class="copyright">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;<script>
-                            document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                document.write(new Date().getFullYear());
+                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </span>
                     </div>

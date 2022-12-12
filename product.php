@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php include "link.php"; ?>
-
-</head>
+<?php
+include 'head.php';
+?>
 
 <body>
-    <?php include "head.php"; ?>
+    <?php include "header.php"; ?>
     <!-- NAVIGATION -->
     <nav id="navigation">
         <!-- container -->
@@ -31,12 +24,11 @@
                             foreach ($getProductById as $call) :
                                 if ($value['type_id'] == $call['type_id']) :
                     ?>
-                    <li class='active'><a
-                            href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
-                    </li>
-                    <?php else : ?>
-                    <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
-                    </li>
+                                    <li class='active'><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                                    </li>
+                                <?php else : ?>
+                                    <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                                    </li>
                     <?php
                                 endif;
                             endforeach;
@@ -59,37 +51,36 @@
         $getProductById = $product->getProductByID($id);
         foreach ($getProductById as $value) :
     ?>
-    <div id="breadcrumb" class="section">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="breadcrumb-tree">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="store.php">All Categories</a></li>
-                        <li class="active"><a href="store.php">Categories</a></li>
-                        <?php
+            <div id="breadcrumb" class="section">
+                <!-- container -->
+                <div class="container">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="breadcrumb-tree">
+                                <li><a href="index.php">Home</a></li>
+                                <li><a href="store.php">All Categories</a></li>
+                                <li class="active"><a href="store.php">Categories</a></li>
+                                <?php
                                 foreach ($getallType as $typeValue) :
                                     foreach ($getProductById as $call) :
                                         if ($typeValue['type_id'] == $call['type_id']) :
                                 ?>
-                        <li class='active'><a
-                                href="store.php?id=<?php echo $typeValue['type_id'] ?>"><?php echo $typeValue['type_name'] ?></a>
-                        </li>
-                        <?php
+                                            <li class='active'><a href="store.php?id=<?php echo $typeValue['type_id'] ?>"><?php echo $typeValue['type_name'] ?></a>
+                                            </li>
+                                <?php
                                         endif;
                                     endforeach;
                                 endforeach;
                                 ?>
-                        <li class="active"><?php echo $value['name'] ?></li>
-                    </ul>
+                                <li class="active"><?php echo $value['name'] ?></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /row -->
                 </div>
+                <!-- /container -->
             </div>
-            <!-- /row -->
-        </div>
-        <!-- /container -->
-    </div>
     <?php endforeach;
     endif; ?>
     <!-- /BREADCRUMB -->
@@ -108,49 +99,49 @@
                     $getImageById = $product->getImageById($id);
                     foreach ($getProductById as $value) :
                 ?>
-                <!-- Product main img -->
-                <div class="col-md-5 col-md-push-2">
-                    <div id="product-main-img">
-                        <div class="product-preview">
-                            <img src="img/<?php echo $value['image'] ?>" alt="">
-                        </div>
-                        <?php
+                        <!-- Product main img -->
+                        <div class="col-md-5 col-md-push-2">
+                            <div id="product-main-img">
+                                <div class="product-preview">
+                                    <img src="img/<?php echo $value['image'] ?>" alt="">
+                                </div>
+                                <?php
                                 foreach ($getImageById as $linkImage) :
                                 ?>
-                        <div class="product-preview">
-                            <img src="img/<?php echo $linkImage['image_name'] ?>" alt="">
-                        </div>
+                                    <div class="product-preview">
+                                        <img src="img/<?php echo $linkImage['image_name'] ?>" alt="">
+                                    </div>
 
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-                <!-- /Product main img -->
-
-                <!-- Product thumb imgs -->
-                <div class="col-md-2  col-md-pull-5">
-                    <div id="product-imgs">
-                        <div class="product-preview">
-                            <img src="img/<?php echo $value['image'] ?>" alt="">
+                                <?php endforeach; ?>
+                            </div>
                         </div>
-                        <?php
+                        <!-- /Product main img -->
+
+                        <!-- Product thumb imgs -->
+                        <div class="col-md-2  col-md-pull-5">
+                            <div id="product-imgs">
+                                <div class="product-preview">
+                                    <img src="img/<?php echo $value['image'] ?>" alt="">
+                                </div>
+                                <?php
                                 foreach ($getImageById as $linkImage) :
                                 ?>
-                        <div class="produc~t-preview">
-                            <img src="img/<?php echo $linkImage['image_name'] ?>" alt="">
+                                    <div class="produc~t-preview">
+                                        <img src="img/<?php echo $linkImage['image_name'] ?>" alt="">
+                                    </div>
+
+                                <?php endforeach; ?>
+                            </div>
                         </div>
 
-                        <?php endforeach; ?>
-                    </div>
-                </div>
+                        <!-- /Product thumb imgs -->
 
-                <!-- /Product thumb imgs -->
+                        <!-- Product details -->
 
-                <!-- Product details -->
-
-                <div class="col-md-5">
-                    <div class="product-details">
-                        <h2 class="product-name"><?php echo $value['name'] ?></h2>
-                        <!-- <div>
+                        <div class="col-md-5">
+                            <div class="product-details">
+                                <h2 class="product-name"><?php echo $value['name'] ?></h2>
+                                <!-- <div>
                             <div class="product-rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -160,14 +151,14 @@
                             </div>
                             <a class="review-link" href="#">10 Review(s) | Add your review</a>
                         </div> -->
-                        <div>
-                            <h3 class="product-price"><?php echo number_format($value['price']) ?> VND</h3>
-                            <!-- <del class="product-old-price">price</del>
+                                <div>
+                                    <h3 class="product-price"><?php echo number_format($value['price']) ?> VND</h3>
+                                    <!-- <del class="product-old-price">price</del>
                             <span class="product-available">In Stock</span> -->
-                        </div>
-                        <p><?php echo $value['description'] ?></p>
+                                </div>
+                                <p><?php echo $value['description'] ?></p>
 
-                        <!-- <div class="product-options">
+                                <!-- <div class="product-options">
                             <label>
                                 Size
                                 <select class="input-select">
@@ -182,41 +173,41 @@
                             </label>
                         </div> -->
 
-                        <div class="add-to-cart">
-                            <form action="cart.php?" method="GET">
-                                <div class="qty-label">
-                                    Qty
-                                    <div class="input-number">
-                                        <input name="number" type="number" value="1">
-                                        <span class="qty-up">+</span>
-                                        <span class="qty-down">-</span>
-                                        <input type="hidden" name="id" value="<?php echo $value['id'] ?>">
+                                <div class="add-to-cart">
+                                    <form action="cart.php?" method="GET">
+                                        <div class="qty-label">
+                                            Qty
+                                            <div class="input-number">
+                                                <input name="number" type="number" value="1">
+                                                <span class="qty-up">+</span>
+                                                <span class="qty-down">-</span>
+                                                <input type="hidden" name="id" value="<?php echo $value['id'] ?>">
 
-                                    </div>
+                                            </div>
+                                        </div>
+                                        <button class="add-to-cart-btn">
+                                            <i class="fa fa-shopping-cart"></i> add to cart
+                                        </button>
+                                    </form>
+
                                 </div>
-                                <button class="add-to-cart-btn">
-                                    <i class="fa fa-shopping-cart"></i> add to cart
-                                </button>
-                            </form>
 
-                        </div>
-
-                        <ul class="product-btns">
-                            <?php
+                                <ul class="product-btns">
+                                    <?php
                                     if (isset($_SESSION['wish'][$value['id']])) :
                                     ?>
-                            <li><a href="cart.php?remove_id=<?php echo $value['id'] ?>"><i class="fa fa-heart"></i> add
-                                    to wishlist</a></li>
-                            <?php else : ?>
-                            <li><a href="cart.php?add_id=<?php echo $value['id'] ?>"><i class="fa fa-heart-o"></i> add
-                                    to wishlist</a></li>
-                            <?php endif; ?>
-                            <!-- <li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li> -->
-                        </ul>
+                                        <li><a href="cart.php?remove_id=<?php echo $value['id'] ?>"><i class="fa fa-heart"></i> add
+                                                to wishlist</a></li>
+                                    <?php else : ?>
+                                        <li><a href="cart.php?add_id=<?php echo $value['id'] ?>"><i class="fa fa-heart-o"></i> add
+                                                to wishlist</a></li>
+                                    <?php endif; ?>
+                                    <!-- <li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li> -->
+                                </ul>
 
-                        <ul class="product-links">
-                            <li>Category:</li>
-                            <?php
+                                <ul class="product-links">
+                                    <li>Category:</li>
+                                    <?php
                                     $getallType = $gettype->getAlltype();
                                     if (isset($_GET['id'])) :
                                         $id = $_GET['id'];
@@ -224,70 +215,70 @@
                                         foreach ($getallType as $typeValue) :
                                             if ($value['type_id'] == $typeValue['type_id']) :
                                     ?>
-                            <li>
-                                <a href="store.php?id=<?php echo $typeValue['type_id'] ?>">
-                                    <?php echo $typeValue['type_name'] ?>
-                                </a>
-                            </li>
-                            <?php
+                                                <li>
+                                                    <a href="store.php?id=<?php echo $typeValue['type_id'] ?>">
+                                                        <?php echo $typeValue['type_name'] ?>
+                                                    </a>
+                                                </li>
+                                    <?php
                                             endif;
                                         endforeach;
                                     endif;
                                     ?>
-                        </ul>
+                                </ul>
 
-                        <ul class="product-links">
-                            <li>Share:</li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-                        </ul>
+                                <ul class="product-links">
+                                    <li>Share:</li>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                                </ul>
 
-                    </div>
-                </div>
-                <!-- /Product details -->
-
-                <!-- Product tab -->
-                <div class="col-md-12">
-                    <div id="product-tab">
-                        <!-- product tab nav -->
-                        <ul class="tab-nav">
-                            <li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-                            <li><a data-toggle="tab" href="#tab2">Details</a></li>
-                            <!-- <li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li> -->
-                        </ul>
-                        <!-- /product tab nav -->
-
-                        <!-- product tab content -->
-                        <div class="tab-content">
-
-                            <!-- tab1  -->
-                            <div id="tab1" class="tab-pane fade in active">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <p><?php echo $value['description'] ?></p>
-                                    </div>
-                                </div>
                             </div>
-                            <!-- /tab1  -->
+                        </div>
+                        <!-- /Product details -->
 
-                            <!-- tab2  -->
-                            <div id="tab2" class="tab-pane fade in">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <p><?php echo $value['details'] ?></p>
+                        <!-- Product tab -->
+                        <div class="col-md-12">
+                            <div id="product-tab">
+                                <!-- product tab nav -->
+                                <ul class="tab-nav">
+                                    <li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
+                                    <li><a data-toggle="tab" href="#tab2">Details</a></li>
+                                    <!-- <li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li> -->
+                                </ul>
+                                <!-- /product tab nav -->
+
+                                <!-- product tab content -->
+                                <div class="tab-content">
+
+                                    <!-- tab1  -->
+                                    <div id="tab1" class="tab-pane fade in active">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p><?php echo $value['description'] ?></p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                    <!-- /tab1  -->
 
-                            <!-- /tab2  -->
+                                    <!-- tab2  -->
+                                    <div id="tab2" class="tab-pane fade in">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p><?php echo $value['details'] ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            <!-- tab3  -->
-                            <!-- <div id="tab3" class="tab-pane fade in">
+                                    <!-- /tab2  -->
+
+                                    <!-- tab3  -->
+                                    <!-- <div id="tab3" class="tab-pane fade in">
                                 <div class="row"> -->
-                            <!-- Rating -->
-                            <!-- <div class="col-md-3">
+                                    <!-- Rating -->
+                                    <!-- <div class="col-md-3">
                                         <div id="rating">
                                             <div class="rating-avg">
                                                 <span>4.5</span>
@@ -368,10 +359,10 @@
                                             </ul>
                                         </div>
                                     </div> -->
-                            <!-- /Rating -->
+                                    <!-- /Rating -->
 
-                            <!-- Reviews -->
-                            <!-- <div class="col-md-6">
+                                    <!-- Reviews -->
+                                    <!-- <div class="col-md-6">
                                         <div id="reviews">
                                             <ul class="reviews">
                                                 <li>
@@ -438,10 +429,10 @@
                                             </ul>
                                         </div>
                                     </div> -->
-                            <!-- /Reviews -->
+                                    <!-- /Reviews -->
 
-                            <!-- Review Form -->
-                            <!-- <div class="col-md-3">
+                                    <!-- Review Form -->
+                                    <!-- <div class="col-md-3">
                                         <div id="review-form">
                                             <form class="review-form">
                                                 <input class="input" type="text" placeholder="Your Name">
@@ -466,14 +457,14 @@
                                             </form>
                                         </div>
                                     </div> -->
-                            <!-- /Review Form -->
-                            <!-- </div>
+                                    <!-- /Review Form -->
+                                    <!-- </div>
                             </div> -->
-                            <!-- /tab3  -->
+                                    <!-- /tab3  -->
+                                </div>
+                                <!-- /product tab content  -->
+                            </div>
                         </div>
-                        <!-- /product tab content  -->
-                    </div>
-                </div>
                 <?php endforeach;
                 endif; ?>
                 <!-- /product tab -->
@@ -510,38 +501,34 @@
                                     $countNumber++;
 
                 ?>
-                <!-- product -->
-                <div class="col-md-3 col-xs-6">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="img/<?php echo $value['image'] ?>" alt="">
+                                    <!-- product -->
+                                    <div class="col-md-3 col-xs-6">
+                                        <div class="product">
+                                            <div class="product-img">
+                                                <img src="img/<?php echo $value['image'] ?>" alt="">
 
-                        </div>
-                        <div class="product-body">
-                            <p class="product-category">Category</p>
-                            <h3 class="product-name"><a
-                                    href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a>
-                            </h3>
-                            <h4 class="product-price"><?php echo number_format($value['price']) ?></h4>
-                            <div class="product-btns">
-                                <?php
+                                            </div>
+                                            <div class="product-body">
+                                                <p class="product-category">Category</p>
+                                                <h3 class="product-name"><a href="product.php?id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a>
+                                                </h3>
+                                                <h4 class="product-price"><?php echo number_format($value['price']) ?></h4>
+                                                <div class="product-btns">
+                                                    <?php
                                                     if (isset($_SESSION['wish'][$value['id']])) :
                                                     ?>
-                                <button class="remove-to-wishlist"><a
-                                        href="cart.php?remove_id=<?php echo $value['id'] ?>"><i
-                                            class="fa fa-heart"></i><span class="tooltipp">remove from
-                                            wishlist</span></a></button>
-                                <?php else : ?>
-                                <button class="add-to-wishlist"><a href="cart.php?add_id=<?php echo $value['id'] ?>"> <i
-                                            class="fa fa-heart-o"></i><span class="tooltipp">add to
-                                            wishlist</span>
-                                    </a></button>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /product -->
+                                                        <button class="remove-to-wishlist"><a href="cart.php?remove_id=<?php echo $value['id'] ?>"><i class="fa fa-heart"></i><span class="tooltipp">remove from
+                                                                    wishlist</span></a></button>
+                                                    <?php else : ?>
+                                                        <button class="add-to-wishlist"><a href="cart.php?add_id=<?php echo $value['id'] ?>"> <i class="fa fa-heart-o"></i><span class="tooltipp">add to
+                                                                    wishlist</span>
+                                                            </a></button>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /product -->
                 <?php endif;
                             endif;
                         endforeach;
@@ -691,9 +678,8 @@
                         <span class="copyright">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;<script>
-                            document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                document.write(new Date().getFullYear());
+                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </span>
                     </div>

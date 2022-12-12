@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php include "link.php"; ?>
-</head>
+<?php
+include 'head.php';
+?>
 
 <body>
-    <?php include "head.php"; ?>
+    <?php include "header.php"; ?>
     <!-- NAVIGATION -->
     <nav id="navigation">
         <!-- container -->

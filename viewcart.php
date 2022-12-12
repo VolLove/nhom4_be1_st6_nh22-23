@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php include "link.php"; ?>
-
-</head>
+<?php
+include 'head.php';
+?>
 
 <body>
-    <?php include "head.php"; ?>
+    <?php include "header.php"; ?>
     <!-- NAVIGATION -->
     <nav id="navigation">
         <!-- container -->
@@ -26,8 +19,8 @@
                     $gettype = new Product;
                     $getallType = $gettype->getAlltype();
                     foreach ($getallType as $value) : ?>
-                    <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
-                    </li>
+                        <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                        </li>
                     <?php
                     endforeach;
                     ?>
@@ -79,25 +72,25 @@
                         foreach ($getAllProduct as $valuePro) :
                             if ($key == $valuePro['id']) :
                 ?>
-                <tr>
-                    <th class="rowproduct">
-                        <div class="imagesproduct">
-                            <img src="./img/<?php echo $valuePro['image'] ?>" alt="">
-                        </div>
-                        <div class="nameproduct">
-                            <a href='product.php?id=<?php echo $valuePro['id'] ?>'><?php echo $valuePro['name'] ?></a>
-                        </div>
-                    </th>
-                    <th>
-                        <p><?php echo number_format($valuePro['price']) ?> VND</p>
-                    </th>
-                    <th>
-                        <p><?php echo $value ?></p>
-                    </th>
-                    <th>
-                        <a class="primary-btn" href="cart.php?cart_remove=<?php echo $key ?>">Delete</a>
-                    </th>
-                </tr>
+                                <tr>
+                                    <th class="rowproduct">
+                                        <div class="imagesproduct">
+                                            <img src="./img/<?php echo $valuePro['image'] ?>" alt="">
+                                        </div>
+                                        <div class="nameproduct">
+                                            <a href='product.php?id=<?php echo $valuePro['id'] ?>'><?php echo $valuePro['name'] ?></a>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <p><?php echo number_format($valuePro['price']) ?> VND</p>
+                                    </th>
+                                    <th>
+                                        <p><?php echo $value ?></p>
+                                    </th>
+                                    <th>
+                                        <a class="primary-btn" href="cart.php?cart_remove=<?php echo $key ?>">Delete</a>
+                                    </th>
+                                </tr>
                 <?php
                             endif;
                         endforeach;
@@ -194,9 +187,8 @@
                         <span class="copyright">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;<script>
-                            document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                document.write(new Date().getFullYear());
+                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </span>
 
