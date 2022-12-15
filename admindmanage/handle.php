@@ -3,7 +3,7 @@ include "models/db.php";
 include "config.php";
 include "models/productmodels.php";
 $product = new Product();
-
+$price = 0;
 if (isset($_POST['product_add'])) {
     if (isset($_POST['name'])) {
         $name = $_POST['name'];
@@ -30,10 +30,10 @@ if (isset($_POST['product_add'])) {
     $created_at = date("Y-m-d H:i:s");
     $add =  $product->addProduct($name, $manu_id, $type_id, $price, $image, $description, $created_at, $details);
     if ($add == 1) {
-        header('Location: product-add.php');
+        header('Location: product-table.php');
         setcookie("success", "Sản phẩm đã được thêm vào!", time() + 1, "/", "", 0);
     } else {
-        header('Location: product-add.php');
+        header('Location: product-table.php');
         setcookie("error", "Sản phẩm không thể thêm vào!", time() + 1, "/", "", 0);
     }
 }
@@ -49,10 +49,10 @@ if (isset($_POST['type_add'])) {
 
     $add = $product->addType($name, $image);
     if ($add == 1) {
-        header('Location: type-add.php');
+        header('Location: type-table.php');
         setcookie("success", "Loại sản phẩm mới đã được thêm vào!", time() + 1, "/", "", 0);
     } else {
-        header('Location: type-add.php');
+        header('Location: type-table.php');
         setcookie("error", "Loại sản phẩm mới không thể thêm vào!", time() + 1, "/", "", 0);
     }
 }
@@ -67,10 +67,10 @@ if (isset($_POST['manufactures_add'])) {
     $image = $_FILES['image']['name'];
     $add = $product->addManufactures($name, $image);
     if ($add == 1) {
-        header('Location: manufacturer-add.php');
+        header('Location: manufacturer-table.php');
         setcookie("success", "Nhãn hiệu mới đã được thêm vào!", time() + 1, "/", "", 0);
     } else {
-        header('Location: manufacturer-add.php');
+        header('Location: manufacturer-table.php');
         setcookie("error", "Nhãn hiệu mới không thể thêm vào!", time() + 1, "/", "", 0);
     }
 }
@@ -118,7 +118,6 @@ if (isset($_POST['manufactures_edit'])) {
     $hinh = $target_dir . basename($_FILES['image']['name']);
     move_uploaded_file($_FILES['image']['tmp_name'], $hinh);
     $image = $_FILES['image']['name'];
-
     $update = $product->updateManufactures($id, $name, $image);
     if ($update == 1) {
         header('Location: manufacturer-table.php');
@@ -173,8 +172,10 @@ if (isset($_POST['type_edit'])) {
     $image = $_FILES['image']['name'];
 
     $add = $product->updateType($id, $name, $image);
+
     if ($add == 1) {
         header('Location: type-table.php');
+
         setcookie("success", "Loại sản phẩm đã đươc cập nhậ!", time() + 1, "/", "", 0);
     } else {
         header('Location: type-table.php');

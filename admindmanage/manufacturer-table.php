@@ -21,12 +21,12 @@ include 'header.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>DataTables</h1>
+                            <h1>Manufacturer table</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">DataTables</li>
+                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                <li class="breadcrumb-item active">Manufacturer table</li>
                             </ol>
                         </div>
                     </div>
@@ -50,36 +50,34 @@ include 'header.php';
                                                 <th>Logo</th>
                                                 <th>Manufacturer</th>
                                                 <th>Product</th>
-                                                <th></th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             foreach ($getAllManufaturer as $value) :
                                             ?>
-                                            <tr>
-                                                <td style="width: 100px; height: 100px;">
-                                                    <img style="width: 100%;" src="../img/<?php echo $value['logo'] ?>">
-                                                </td>
-                                                <td>
-                                                    <?php echo $value['manu_name']; ?>
-                                                </td>
-                                                <td style="width: 100px;">
-                                                    <?php $countProduct = 0;
+                                                <tr>
+                                                    <td style="width: 100px; height: 100px;">
+                                                        <img style="width: 100%;" src="../img/<?php echo $value['logo'] ?>">
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $value['manu_name']; ?>
+                                                    </td>
+                                                    <td style="width: 100px;">
+                                                        <?php $countProduct = 0;
                                                         $getAllProductByType = $product->getProductByManu($value['manu_id']);
                                                         foreach ($getAllProductByType as $item) {
                                                             $countProduct++;
                                                         }
                                                         echo $countProduct;
                                                         ?>
-                                                </td>
-                                                <td style="width: 100px;">
-                                                    <a href="manufacturer-edit.php?id=<?php echo $value['manu_id'] ?>"
-                                                        type="button" class="btn btn-block btn-default btn-xs">Edit</a>
-                                                    <a href="handle.php?manudelete=<?php echo $value['manu_id'] ?>"
-                                                        type="button" class="btn btn-block btn-danger btn-xs">Delete</a>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                    <td style="width: 100px;">
+                                                        <a href="manufacturer-edit.php?id=<?php echo $value['manu_id'] ?>" type="button" class="btn btn-block btn-default btn-xs">Edit</a>
+                                                        <a href="handle.php?manudelete=<?php echo $value['manu_id'] ?>" type="button" class="btn btn-block btn-danger btn-xs">Delete</a>
+                                                    </td>
+                                                </tr>
                                             <?php
                                             endforeach;
                                             ?>
@@ -112,18 +110,18 @@ include 'header.php';
     <?php include 'jquerylink.php'; ?>
 
     <script>
-    $(function() {
+        $(function() {
 
-        $('#example').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": false,
-            "info": false,
-            "autoWidth": false,
-            "responsive": false,
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    });
+            $('#example').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": false,
+                "info": false,
+                "autoWidth": false,
+                "responsive": false,
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });
     </script>
 </body>
 

@@ -299,26 +299,42 @@ class Product extends Db
     public function updateProduct($id, $name, $manu_id, $type_id, $price, $image, $description, $details)
     {
 
-        $sql = self::$connection->prepare('UPDATE `products` SET `name`=?,`manu_id`=?,`type_id`=?,`price`=?,`image`=?,`description`=?,`details`=? WHERE `id`=?');
-        $sql->bind_param('siiisssi', $name, $manu_id, $type_id, $price, $image, $description, $details, $id);
-        return $sql->execute();
+        if ($image != "") {
+            $sql = self::$connection->prepare('UPDATE `products` SET `name`=?,`manu_id`=?,`type_id`=?,`price`=?,`image`=?,`description`=?,`details`=? WHERE `id`=?');
+            $sql->bind_param('siiisssi', $name, $manu_id, $type_id, $price, $image, $description, $details, $id);
+            return $sql->execute();
+        } else {
+            $sql = self::$connection->prepare('UPDATE `products` SET `name`=?,`manu_id`=?,`type_id`=?,`price`=?,`description`=?,`details`=? WHERE `id`=?');
+            $sql->bind_param('siiissi', $name, $manu_id, $type_id, $price, $description, $details, $id);
+            return $sql->execute();
+        }
     }
     //update manu
     public function updateManufactures($manu_id, $manu_name, $logo)
     {
-
-        $sql = self::$connection->prepare('UPDATE `manufactures` SET `manu_name`=?,`logo`= ? WHERE `manu_id`= ?');
-        $sql->bind_param('ssi', $manu_name, $logo, $manu_id);
-        return $sql->execute();
+        if ($logo != "") {
+            $sql = self::$connection->prepare('UPDATE `manufactures` SET `manu_name`=?,`logo`= ? WHERE `manu_id`= ?');
+            $sql->bind_param('ssi', $manu_name, $logo, $manu_id);
+            return $sql->execute();
+        } else {
+            $sql = self::$connection->prepare('UPDATE `manufactures` SET `manu_name`=? WHERE `manu_id`= ?');
+            $sql->bind_param('si', $manu_name, $manu_id);
+            return $sql->execute();
+        }
     }
 
     //update type
     public function updateType($type_id, $type_name, $image)
     {
-
-        $sql = self::$connection->prepare('UPDATE `protypes` SET `type_name`=?,`image`=? WHERE `type_id`= ?');
-        $sql->bind_param('ssi', $type_name, $image, $type_id);
-        return $sql->execute();
+        if ($image != "") {
+            $sql = self::$connection->prepare('UPDATE `protypes` SET `type_name`=?,`image`=? WHERE `type_id`= ?');
+            $sql->bind_param('ssi', $type_name, $image, $type_id);
+            return $sql->execute();
+        } else {
+            $sql = self::$connection->prepare('UPDATE `protypes` SET `type_name`=? WHERE `type_id`= ?');
+            $sql->bind_param('si', $type_name, $type_id);
+            return $sql->execute();
+        }
     }
     public function getManuByID($manu_id)
     {

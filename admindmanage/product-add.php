@@ -44,7 +44,8 @@ include 'header.php';
                                     <h3 class="card-title">Add new product</h3>
 
                                     <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                            title="Collapse">
                                             <i class="fas fa-minus"></i>
                                         </button>
                                     </div>
@@ -67,27 +68,28 @@ include 'header.php';
                                             $getallmanu = $product->getAllManufacturer();
                                             foreach ($getalltype as $value) :
                                             ?>
-                                                <option value="<?php echo $value['type_id']; ?>">
-                                                    <?php echo $value['type_name']; ?>
-                                                </option>
+                                            <option value="<?php echo $value['type_id']; ?>">
+                                                <?php echo $value['type_name']; ?>
+                                            </option>
 
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputStatus">Manufacturer</label>
-                                        <select id="manufacturer" name="manufacturer" class="form-control custom-select">
+                                        <select id="manufacturer" name="manufacturer"
+                                            class="form-control custom-select">
                                             <option selected disabled>Select one</option>
                                             <?php foreach ($getallmanu as $value) : ?>
-                                                <option value="<?php echo $value['manu_id'] ?>">
-                                                    <?php echo $value['manu_name']; ?>
-                                                </option>
+                                            <option value="<?php echo $value['manu_id'] ?>">
+                                                <?php echo $value['manu_name']; ?>
+                                            </option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="price">Price</label>
-                                        <input name="price" required type="text" id="price" class="form-control">
+                                        <input required name="price" type="text" id="price" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="image">Image</label>
@@ -95,11 +97,13 @@ include 'header.php';
                                     </div>
                                     <div class="form-group">
                                         <label for="description"> Description</label>
-                                        <textarea id="description" name="description" class="form-control" rows="4"></textarea>
+                                        <textarea required id="description" name="description" class="form-control"
+                                            rows="4"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="details"> Details</label>
-                                        <textarea id="details" name="details" class="form-control" rows="4"></textarea>
+                                        <textarea required id="details" name="details" class="form-control"
+                                            rows="4"></textarea>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
