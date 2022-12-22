@@ -1,3 +1,12 @@
+<?php session_start();
+include "models/db.php";
+include "config.php";
+include "models/productmodels.php";
+include "login/productaccount.php";
+$productacc = new Productacc;
+$gettype = new Product;
+$product = new product;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,13 +14,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php session_start();
-    include "models/db.php";
-    include "config.php";
-    include "models/productmodels.php";
-    $gettype = new Product;
-    $product = new product;
-    ?>
+
 
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 

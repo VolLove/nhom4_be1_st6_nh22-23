@@ -9,7 +9,24 @@
                 <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
             </ul>
             <ul class="header-links pull-right">
-                <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+                <?php
+                if (isset($_SESSION['login'])) :
+                ?>
+                <li><a href="account.php"><i class="fa fa-user-o"></i> My Account</a></li>
+                <li><a href="handle.php?logout"><i class="fa fa-user-o"></i> Logout</a></li>
+                <?php
+                elseif (isset($_COOKIE['remember'])) :
+                    $_SESSION['login'] = $_COOKIE['remember'];
+                ?>
+                <li><a href="account.php"><i class="fa fa-user-o"></i> My Account</a></li>
+                <li><a href="handle.php?logout"><i class="fa fa-user-o"></i> Logout</a></li>
+                <?php
+                else :
+                ?>
+                <li><a href="./login/"><i class="fa fa-user-o"></i> Login</a></li>
+                <?php
+                endif;
+                ?>
             </ul>
         </div>
     </div>

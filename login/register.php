@@ -44,7 +44,7 @@
                     <h3>Register</h3>
                 </div>
                 <div class="card-body">
-                    <form action="handle.php" method="POST">
+                    <form action="../handle.php" method="POST">
                         <input type="hidden" name="typehandle" value="register">
 
                         <div class="input-group form-group">

@@ -17,5 +17,6 @@
   margin-right: 10px;
   width: 100px;
 }
-.tableviewcart .rowproduct .nameproduct {
+.paddingtop-1 {
+  padding-top: 20px;
 }

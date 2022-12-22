@@ -48,7 +48,7 @@ session_start();
                     <h3>Forgot your password</h3>
                 </div>
                 <div class="card-body">
-                    <form action="handle.php" method="POST">
+                    <form action="../handle.php" method="POST">
 
 
                         <?php
@@ -60,12 +60,16 @@ session_start();
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
                             <input name="code" type="code" class="form-control" placeholder="code">
+                            <button><?php if (isset($_SESSION['code'])) {
+                                            echo $_SESSION['code'];
+                                        } ?></button>
                         </div>
                         <div class="input-group form-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
                             <input name="password" type="password" class="form-control" placeholder="new password">
+
                         </div>
 
                         <div class="input-group form-group">

@@ -3,7 +3,18 @@ include 'head.php';
 ?>
 
 <body>
-    <?php include "header.php"; ?>
+    <?php include "header.php";
+    $name = '';
+
+    if (isset($_SESSION['login'])) {
+        $productacc = new Productacc;
+        $getUser = $productacc->getuser($_SESSION['login']);
+        foreach ($getUser as $value) {
+            $name = $value['fullname'];
+            break;
+        }
+    }
+    ?>
     <!-- NAVIGATION -->
     <nav id="navigation">
         <!-- container -->
@@ -19,8 +30,8 @@ include 'head.php';
                     $gettype = new Product;
                     $getallType = $gettype->getAlltype();
                     foreach ($getallType as $value) : ?>
-                        <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
-                        </li>
+                    <li><a href="store.php?id=<?php echo $value['type_id'] ?>"><?php echo $value['type_name'] ?></a>
+                    </li>
                     <?php
                     endforeach;
                     ?>
@@ -67,7 +78,7 @@ include 'head.php';
                             <h3 class="title">Billing address</h3>
                         </div>
                         <div class="form-group">
-                            <input class="input" type="text" name="name" placeholder="Name">
+                            <input class="input" type="text" name="name" placeholder="Name" value="<?php echo $name ?>">
                         </div>
                         <div class="form-group">
                             <input class="input" type="text" name="address" placeholder="Address">
@@ -94,7 +105,8 @@ include 'head.php';
                                 <div class="caption">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                         incididunt.</p>
-                                    <input class="input" type="password" name="password" placeholder="Enter Your Password">
+                                    <input class="input" type="password" name="password"
+                                        placeholder="Enter Your Password">
                                 </div>
                             </div>
                         </div>
@@ -168,10 +180,10 @@ include 'head.php';
                                     foreach ($getAllProduct as $valuePro) :
                                         if ($key == $valuePro['id']) :
                             ?>
-                                            <div class="order-col">
-                                                <div><?php echo $value ?>x <?php echo $valuePro['name'] ?></div>
-                                                <div><?php echo number_format($valuePro['price'] * $value) ?> VND</div>
-                                            </div>
+                            <div class="order-col">
+                                <div><?php echo $value ?>x <?php echo $valuePro['name'] ?></div>
+                                <div><?php echo number_format($valuePro['price'] * $value) ?> VND</div>
+                            </div>
                             <?php
                                             $total = $total + $valuePro['price'] * $value;
                                         endif;
@@ -323,8 +335,9 @@ include 'head.php';
                         <span class="copyright">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;<script>
-                                document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            document.write(new Date().getFullYear());
+                            </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
+                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </span>
                     </div>
