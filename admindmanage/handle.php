@@ -129,24 +129,12 @@ if (isset($_POST['manufactures_edit'])) {
 }
 if (isset($_POST['product_edit'])) {
     $id = $_POST['product_edit'];
-    if (isset($_POST['name'])) {
-        $name = $_POST['name'];
-    }
-    if (isset($_POST['type'])) {
-        $type_id = $_POST['type'];
-    }
-    if (isset($_POST['manufacturer'])) {
-        $manu_id = $_POST['manufacturer'];
-    }
-    if (isset($_POST['price'])) {
-        $price = $_POST['price'];
-    }
-    if (isset($_POST['description'])) {
-        $description = $_POST['description'];
-    }
-    if (isset($_POST['details'])) {
-        $details = $_POST['details'];
-    }
+    $name = $_POST['name'];
+    $type_id = $_POST['type'];
+    $manu_id = $_POST['manufacturer'];
+    $price = $_POST['price'];
+    $description = $_POST['description'];
+    $details = $_POST['details'];
     $target_dir = "../img/";
     $hinh = $target_dir . basename($_FILES['image']['name']);
     move_uploaded_file($_FILES['image']['tmp_name'], $hinh);

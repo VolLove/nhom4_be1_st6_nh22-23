@@ -48,7 +48,7 @@ include 'header.php';
                                     foreach ($getProductByID as $value) :
                                 ?>
                                 <div class="card-body">
-                                    <input type="hidden" name="product_edit">
+                                    <input type="hidden" name="product_edit" value="<?php echo $value['id']; ?>">
                                     <div class="form-group">
                                         <label for="inputName">Product name</label>
                                         <input required type="text" value="<?php echo $value['name'] ?>" id="inputName"
@@ -112,7 +112,7 @@ include 'header.php';
                     <div class="row">
                         <div class="col-12">
                             <a href="product-table.php" class="btn btn-secondary">Cancel</a>
-                            <input type="submit" value="Create new Porject" class="btn btn-success float-right">
+                            <input type="submit" value="Chance product" class="btn btn-success float-right">
                         </div>
                     </div>
                 </form>
